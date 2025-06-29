@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Turning ideas into",
+    "highlight": "smart solutions",
+    "desc": "Specialist in Artificial Intelligence, Web Development and Process Automation. Creating innovative solutions that drive business and optimize results.",
+    "cta_services": "See Services",
+    "cta_portfolio": "Portfolio"
+  },
+  "about": {
+    "title": "About Me",
+    "desc": "Professional transitioning to Artificial Intelligence, with solid experience in systems analysis and technical support.",
+    "trajetoria": "Graduated in Information Systems, currently pursuing a postgraduate degree in Applied Artificial Intelligence at SENAI/SC. My experience as a Systems and Support Analyst has given me a solid foundation in problem solving, data analysis and technical solution development.",
+    "motivacao": "I am driven by technical challenges and the opportunity to apply technology strategically, especially in data-driven solutions, Web3, financial markets and distributed systems.",
+    "formacao": "Academic Background",
+    "exp": "Professional Experience"
+  },
+  "services": {
+    "title": "Services",
+    "desc": "I offer complete solutions in the most in-demand areas of today's technology market."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "desc": "Some projects that demonstrate my experience and delivery capacity."
+  },
+  "contact": {
+    "title": "Let's Talk?",
+    "desc": "Ready to turn your ideas into reality. Get in touch to discuss your next project.",
+    "info": "Contact Information",
+    "areas": "Areas of Interest",
+    "form_title": "Send a Message",
+    "form_desc": "Interested in a collaboration? Let's talk about your project.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully! Thank you for your contact.",
+    "error": "An error occurred while sending. Please try again later."
+  },
+  "experience": [
+    {
+      "title": "AI Resident",
+      "company": "SENAI/SC",
+      "period": "Jun 2025 - present",
+      "desc": "Intensive program focused on advanced AI development, including Machine Learning, Deep Learning, Computer Vision and Generative AI.",
+      "skills": ["Python", "Machine Learning", "Deep Learning", "Computer Vision"]
+    },
+    {
+      "title": "Support Analyst N2",
+      "company": "Paradigma Business Solutions",
+      "period": "Jan 2024 - Jun 2025",
+      "desc": "Development of solutions for diagnosis and troubleshooting, working with system integration and continuous process improvement.",
+      "skills": ["SQL", "T-SQL", "XML", "SOAP", "Problem Solving"]
+    },
+    {
+      "title": "Support Analyst",
+      "company": "Paradigma Business Solutions",
+      "period": "Jul 2022 - Mar 2024",
+      "desc": "Database queries, bug fixing and product improvements through pull requests.",
+      "skills": ["SQL", "CSS", "Database", "Debugging"]
+    }
+  ],
+  "services_cards": [
+    {
+      "title": "Artificial Intelligence",
+      "desc": "Development of Machine Learning, Deep Learning models, data analysis and generative AI for innovative solutions.",
+      "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Computer Vision", "NLP"]
+    },
+    {
+      "title": "Web Development",
+      "desc": "Creation of modern, responsive and high-performance websites and web applications using current technologies.",
+      "skills": ["React", "JavaScript", "HTML/CSS", "Node.js", "SQL", "Git"]
+    },
+    {
+      "title": "Process Automation",
+      "desc": "Automation of repetitive tasks and workflow optimization to increase efficiency and reduce errors.",
+      "skills": ["Python", "RPA", "APIs", "System Integration", "DevOps", "Process Analysis"]
+    }
+  ],
+  "portfolio_cards": [
+    {
+      "title": "Data Analysis System with AI",
+      "desc": "Development of a data analysis pipeline using Machine Learning for business insights.",
+      "technologies": ["Python", "Pandas", "Scikit-learn", "Matplotlib"],
+      "status": "In progress"
+    },
+    {
+      "title": "Report Automation",
+      "desc": "Automated system for generating business reports with integration of multiple data sources.",
+      "technologies": ["Python", "SQL", "APIs", "Excel"],
+      "status": "Done"
+    },
+    {
+      "title": "Responsive Website",
+      "desc": "Development of a modern corporate website with responsive design and SEO optimization.",
+      "technologies": ["React", "JavaScript", "CSS", "HTML"],
+      "status": "Done"
+    }
+  ],
+  "portfolio_status": {
+    "in_progress": "In progress",
+    "done": "Done"
+  },
+  "form": {
+    "name_placeholder": "Enter your name",
+    "email_placeholder": "Enter your email",
+    "message_placeholder": "Enter your message"
+  }
+} 

@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "portfolio": "Portfólio",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "Transformando ideias em",
+    "highlight": "soluções inteligentes",
+    "desc": "Especialista em Inteligência Artificial, Desenvolvimento Web e Automação de Processos. Criando soluções inovadoras que impulsionam negócios e otimizam resultados.",
+    "cta_services": "Ver Serviços",
+    "cta_portfolio": "Portfólio"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "desc": "Profissional em transição para Inteligência Artificial, com sólida experiência em análise de sistemas e suporte técnico.",
+    "trajetoria": "Formado em Sistemas de Informação, atualmente cursando pós-graduação em Inteligência Artificial Aplicada no SENAI/SC. Minha experiência como Analista de Sistemas e Suporte me proporcionou uma base sólida em resolução de problemas, análise de dados e desenvolvimento de soluções técnicas.",
+    "motivacao": "Sou movido por desafios técnicos e pela oportunidade de aplicar tecnologia de forma estratégica, especialmente em soluções baseadas em dados, Web3, mercado financeiro e sistemas distribuídos.",
+    "formacao": "Formação Acadêmica",
+    "exp": "Experiência Profissional"
+  },
+  "services": {
+    "title": "Serviços",
+    "desc": "Ofereço soluções completas nas áreas de maior demanda do mercado tecnológico atual."
+  },
+  "portfolio": {
+    "title": "Portfólio",
+    "desc": "Alguns dos projetos que demonstram minha experiência e capacidade de entrega."
+  },
+  "contact": {
+    "title": "Vamos Conversar?",
+    "desc": "Pronto para transformar suas ideias em realidade. Entre em contato para discutir seu próximo projeto.",
+    "info": "Informações de Contato",
+    "areas": "Áreas de Interesse",
+    "form_title": "Envie uma Mensagem",
+    "form_desc": "Interessado em uma colaboração? Vamos conversar sobre seu projeto.",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Mensagem",
+    "send": "Enviar Mensagem",
+    "success": "Mensagem enviada com sucesso! Obrigado pelo contato.",
+    "error": "Ocorreu um erro ao enviar. Tente novamente mais tarde."
+  },
+  "experience": [
+    {
+      "title": "Residente em Inteligência Artificial",
+      "company": "SENAI/SC",
+      "period": "Jun 2025 - presente",
+      "desc": "Programa intensivo focado em desenvolvimento avançado em IA, incluindo Machine Learning, Deep Learning, Visão Computacional e IA Generativa.",
+      "skills": ["Python", "Machine Learning", "Deep Learning", "Computer Vision"]
+    },
+    {
+      "title": "Analista de Suporte N2",
+      "company": "Paradigma Business Solutions",
+      "period": "Jan 2024 - Jun 2025",
+      "desc": "Desenvolvimento de soluções para diagnóstico e resolução de problemas, trabalho com integração de sistemas e melhoria contínua de processos.",
+      "skills": ["SQL", "T-SQL", "XML", "SOAP", "Resolução de Problemas"]
+    },
+    {
+      "title": "Analista de Suporte",
+      "company": "Paradigma Business Solutions",
+      "period": "Jul 2022 - Mar 2024",
+      "desc": "Consultas a bancos de dados, correção de erros e desenvolvimento de melhorias no produto através de pull requests.",
+      "skills": ["SQL", "CSS", "Banco de Dados", "Debugging"]
+    }
+  ],
+  "services_cards": [
+    {
+      "title": "Inteligência Artificial",
+      "desc": "Desenvolvimento de modelos de Machine Learning, Deep Learning, análise de dados e IA generativa para soluções inovadoras.",
+      "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Computer Vision", "NLP"]
+    },
+    {
+      "title": "Desenvolvimento Web",
+      "desc": "Criação de websites e aplicações web modernas, responsivas e performáticas usando tecnologias atuais.",
+      "skills": ["React", "JavaScript", "HTML/CSS", "Node.js", "SQL", "Git"]
+    },
+    {
+      "title": "Automação de Processos",
+      "desc": "Automatização de tarefas repetitivas e otimização de workflows para aumentar eficiência e reduzir erros.",
+      "skills": ["Python", "RPA", "APIs", "Integração de Sistemas", "DevOps", "Análise de Processos"]
+    }
+  ],
+  "portfolio_cards": [
+    {
+      "title": "Sistema de Análise de Dados com IA",
+      "desc": "Desenvolvimento de pipeline de análise de dados utilizando Machine Learning para insights de negócio.",
+      "technologies": ["Python", "Pandas", "Scikit-learn", "Matplotlib"],
+      "status": "Em desenvolvimento"
+    },
+    {
+      "title": "Automação de Relatórios",
+      "desc": "Sistema automatizado para geração de relatórios empresariais com integração de múltiplas fontes de dados.",
+      "technologies": ["Python", "SQL", "APIs", "Excel"],
+      "status": "Concluído"
+    },
+    {
+      "title": "Website Responsivo",
+      "desc": "Desenvolvimento de website corporativo moderno com design responsivo e otimização para SEO.",
+      "technologies": ["React", "JavaScript", "CSS", "HTML"],
+      "status": "Concluído"
+    }
+  ],
+  "portfolio_status": {
+    "in_progress": "Em desenvolvimento",
+    "done": "Concluído"
+  },
+  "form": {
+    "name_placeholder": "Digite seu nome",
+    "email_placeholder": "Digite seu email",
+    "message_placeholder": "Digite sua mensagem"
+  }
+} 

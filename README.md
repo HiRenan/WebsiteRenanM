@@ -14,6 +14,7 @@ Website profissional desenvolvido para apresentar serviços e expertise nas áre
 - **SEO-Ready:** Estrutura preparada para otimização de busca
 
 ### Paleta de Cores
+
 - **Azul Principal:** #2C3E50 (Profissionalismo)
 - **Azul Secundário:** #3498DB (Tecnologia)
 - **Verde Destaque:** #2ECC71 (Inovação)
@@ -21,46 +22,54 @@ Website profissional desenvolvido para apresentar serviços e expertise nas áre
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Frontend:** React 18 + Vite
-- **Styling:** Tailwind CSS + shadcn/ui
+- **Frontend:** React 19 + Vite
+- **Styling:** Tailwind CSS 4 + shadcn/ui
 - **Ícones:** Lucide React
 - **Build:** Vite
-- **Deploy:** Vercel
+- **Package Manager:** pnpm
 
 ## 📱 Seções do Website
 
 ### 🏠 Home (Hero Section)
+
 - Apresentação impactante
 - Call-to-actions estratégicos
 - Imagem personalizada com elementos de IA, Web Dev e Automação
 
 ### 👨‍💻 Sobre Mim
+
 - Trajetória profissional detalhada
 - Formação acadêmica (Pós-graduação em IA)
 - Experiências relevantes com tecnologias
 
 ### 🔧 Serviços
+
 **Inteligência Artificial**
+
 - Machine Learning e Deep Learning
 - Análise de dados e Big Data
 - Visão Computacional e IA Generativa
 
 **Desenvolvimento Web**
+
 - Websites e aplicações modernas
 - Frontend e Backend
 - Tecnologias atuais (React, Node.js, etc.)
 
 **Automação de Processos**
+
 - RPA (Robotic Process Automation)
 - Integração de sistemas
 - Otimização de workflows
 
 ### 💼 Portfólio
+
 - Projetos demonstrando experiência
 - Tecnologias utilizadas
 - Status de desenvolvimento
 
 ### 📞 Contato
+
 - Formulário de contato funcional
 - Informações de localização
 - Links para LinkedIn e GitHub
@@ -70,22 +79,22 @@ Website profissional desenvolvido para apresentar serviços e expertise nas áre
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/SEU_USUARIO/renan-mocelin-website.git
+git clone https://github.com/HiRenan/WebsiteRenanM.git
 
 # Entrar na pasta
-cd renan-mocelin-website
+cd WebsiteRenanM
 
 # Instalar dependências
-npm install
+pnpm install
 
 # Executar em modo desenvolvimento
-npm run dev
+pnpm dev
 
 # Build para produção
-npm run build
+pnpm build
 
 # Preview do build
-npm run preview
+pnpm preview
 ```
 
 ## 📦 Estrutura do Projeto
@@ -111,26 +120,37 @@ renan-website/
 
 O projeto está configurado para deploy automático no Vercel:
 
-1. **Push para GitHub:** Qualquer commit na branch main
-2. **Build Automático:** Vercel detecta mudanças e faz build
-3. **Deploy Instantâneo:** Site atualizado automaticamente
+### Vercel (Recomendado)
 
-**URL de Produção:** [Será fornecida após deploy]
+1. Conecte sua conta GitHub ao Vercel
+2. Importe o repositório `HiRenan/WebsiteRenanM`
+3. Deploy automático a cada push
+4. URL será: `https://website-renan-m.vercel.app` (ou similar)
+
+### Netlify (Alternativa)
+
+1. Conecte sua conta GitHub ao Netlify
+2. Importe o repositório
+3. Build command: `pnpm build`
+4. Publish directory: `dist`
 
 ## 🔄 Atualizações Futuras
 
 ### Conteúdo
+
 - [ ] Adicionar projetos reais conforme desenvolvimento
 - [ ] Atualizar experiências profissionais
 - [ ] Incluir certificações e cursos
 
 ### Funcionalidades
+
 - [ ] Integração do formulário com serviço de email
 - [ ] Google Analytics para métricas
 - [ ] Seção de blog/artigos
 - [ ] Modo escuro (dark mode)
 
 ### SEO e Performance
+
 - [ ] Meta tags específicas por seção
 - [ ] Open Graph para redes sociais
 - [ ] Sitemap.xml
@@ -151,15 +171,19 @@ O projeto está configurado para deploy automático no Vercel:
 ✅ **Performance:** Carregamento rápido e otimizado  
 ✅ **Manutenível:** Código limpo e bem estruturado  
 ✅ **Escalável:** Fácil de adicionar novas seções/funcionalidades  
+✅ **Publicado no GitHub:** Código disponível e versionado
 
 ## 📞 Contato
 
 **Renan Mocelin**
+
 - 📍 Florianópolis, Santa Catarina, Brasil
 - 💼 [LinkedIn](https://www.linkedin.com/in/renan-mocelin-br/)
+- 🐙 [GitHub](https://github.com/HiRenan)
 - 🌐 Website: [Em breve após deploy]
 
 ---
 
 **Desenvolvido com ❤️ usando React + Tailwind CSS**
 
+_Repositório: https://github.com/HiRenan/WebsiteRenanM_
