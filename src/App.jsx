@@ -20,6 +20,7 @@ function App() {
   const [formStatus, setFormStatus] = useState(null)
   const [theme, setTheme] = useState('light')
   const { t, i18n } = useTranslation()
+  const [formErrors, setFormErrors] = useState({})
 
   // Detectar tema do sistema na primeira visita
   useEffect(() => {
@@ -83,12 +84,28 @@ function App() {
   const projects = t('portfolio_cards', { returnObjects: true })
   const portfolioStatus = t('portfolio_status', { returnObjects: true })
 
-  // Função para lidar com o submit do formulário
+  const validateForm = (data) => {
+    const errors = {}
+    if (!data.get('nome') || data.get('nome').trim().length < 2) {
+      errors.nome = t('form.error_name', 'Por favor, preencha seu nome.')
+    }
+    if (!data.get('email') || !/^\S+@\S+\.\S+$/.test(data.get('email'))) {
+      errors.email = t('form.error_email', 'Digite um e-mail válido.')
+    }
+    if (!data.get('mensagem') || data.get('mensagem').trim().length < 5) {
+      errors.mensagem = t('form.error_message', 'Digite uma mensagem mais detalhada.')
+    }
+    return errors
+  }
+
   const handleContactSubmit = async (e) => {
     e.preventDefault()
     setFormStatus(null)
     const form = e.target
     const data = new FormData(form)
+    const errors = validateForm(data)
+    setFormErrors(errors)
+    if (Object.keys(errors).length > 0) return
     try {
       const response = await fetch('https://formspree.io/f/mblyqevg', {
         method: 'POST',
@@ -179,8 +196,7 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                {t('hero.title')}
-                <span className="text-blue-600 dark:text-blue-400"> {t('hero.highlight')}</span>
+                Transformando desafios de negócios em <span className="text-blue-600 dark:text-blue-400">soluções inteligentes</span> com IA e Automação.
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 {t('hero.desc')}
@@ -222,6 +238,19 @@ function App() {
                 <div>
                   <p className="font-medium text-gray-900 dark:text-white">{t('about.bacharel_title', i18n.language === 'pt' ? 'Bacharelado em Tecnologia da Informação' : 'Bachelor in Information Technology')}</p>
                   <p className="text-gray-600 dark:text-gray-300">Estácio • 2020-2024</p>
+                </div>
+              </div>
+
+              {/* Depoimentos */}
+              <div className="mt-12">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Depoimentos</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {t('testimonials', { returnObjects: true }).map((testi, idx) => (
+                    <div key={idx} className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 shadow">
+                      <p className="italic text-gray-700 dark:text-gray-200 mb-2">"{testi.text}"</p>
+                      <span className="block text-sm text-gray-500 dark:text-gray-400 font-medium">{testi.author}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -273,6 +302,21 @@ function App() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300 dark:text-gray-200 dark:group-hover:text-gray-100">{service.desc}</p>
+                  {service.exemplos && (
+                    <>
+                      <h5 className="font-semibold text-blue-600 dark:text-blue-400 mb-2 flex items-center gap-2">
+                        <svg className="w-4 h-4 inline-block" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2l4 -4" /></svg>
+                        Exemplos de Aplicação
+                      </h5>
+                      <ul className="mb-4 pl-4 space-y-1">
+                        {service.exemplos.map((ex, i) => (
+                          <li key={i} className="flex items-start gap-2 text-gray-700 dark:text-gray-200 text-sm">
+                            <span className="mt-1 text-blue-500 dark:text-blue-300">•</span> {ex}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                   <div className="flex flex-wrap gap-2">
                     {service.skills.map((skill, skillIndex) => (
                       <Badge key={skillIndex} variant="outline" className="text-xs group-hover:bg-blue-100 group-hover:border-blue-300 group-hover:text-blue-700 transition-all duration-300 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:group-hover:bg-blue-900 dark:group-hover:border-blue-800 dark:group-hover:text-blue-200">
@@ -374,15 +418,18 @@ function App() {
                   <form onSubmit={handleContactSubmit} className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">{t('contact.name')}</label>
-                      <input type="text" name="nome" required placeholder={t('form.name_placeholder')} className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                      <input type="text" name="nome" required placeholder={t('form.name_placeholder')} className={"w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" + (formErrors.nome ? ' border-red-500' : '')} />
+                      {formErrors.nome && <div className="text-red-400 text-xs mt-1">{formErrors.nome}</div>}
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">{t('contact.email')}</label>
-                      <input type="email" name="email" required placeholder={t('form.email_placeholder')} className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                      <input type="email" name="email" required placeholder={t('form.email_placeholder')} className={"w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" + (formErrors.email ? ' border-red-500' : '')} />
+                      {formErrors.email && <div className="text-red-400 text-xs mt-1">{formErrors.email}</div>}
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">{t('contact.message')}</label>
-                      <textarea rows="4" name="mensagem" required placeholder={t('form.message_placeholder')} className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                      <textarea rows="4" name="mensagem" required placeholder={t('form.message_placeholder')} className={"w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" + (formErrors.mensagem ? ' border-red-500' : '')}></textarea>
+                      {formErrors.mensagem && <div className="text-red-400 text-xs mt-1">{formErrors.mensagem}</div>}
                     </div>
                     <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">{t('contact.send')}</Button>
                     {formStatus === 'success' && (

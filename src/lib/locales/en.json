@@ -15,9 +15,9 @@
   },
   "about": {
     "title": "About Me",
-    "desc": "Professional transitioning to Artificial Intelligence, with solid experience in systems analysis and technical support.",
-    "trajetoria": "Graduated in Information Systems, currently pursuing a postgraduate degree in Applied Artificial Intelligence at SENAI/SC. My experience as a Systems and Support Analyst has given me a solid foundation in problem solving, data analysis and technical solution development.",
-    "motivacao": "I am driven by technical challenges and the opportunity to apply technology strategically, especially in data-driven solutions, Web3, financial markets and distributed systems.",
+    "desc": "I am passionate about technology and solving real-world problems. After years working as a systems analyst, I decided to dive into the world of Artificial Intelligence to turn business challenges into innovation opportunities. My mission is to create solutions that positively impact people and companies, combining AI, automation, and web development.",
+    "trajetoria": "My journey began in support and systems analysis, where I learned the importance of listening to the client and deeply understanding processes. The desire to go further, to create and innovate, led me to a postgraduate degree in AI. Today, I seek to combine my practical experience with the power of data and automation to deliver concrete results.",
+    "motivacao": "I believe technology only makes sense when it improves people's lives. My goal is to be a reference in smart solutions, contributing to a more efficient, human, and innovative market.",
     "formacao": "Academic Background",
     "exp": "Professional Experience"
   },
@@ -70,37 +70,61 @@
     {
       "title": "Artificial Intelligence",
       "desc": "Development of Machine Learning, Deep Learning models, data analysis and generative AI for innovative solutions.",
-      "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Computer Vision", "NLP"]
+      "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Computer Vision", "NLP"],
+      "exemplos": [
+        "Development of recommendation systems for e-commerce",
+        "Predictive sales and churn analysis",
+        "Automatic classification of documents and images"
+      ]
     },
     {
       "title": "Web Development",
       "desc": "Creation of modern, responsive and high-performance websites and web applications using current technologies.",
-      "skills": ["React", "JavaScript", "HTML/CSS", "Node.js", "SQL", "Git"]
+      "skills": ["React", "JavaScript", "HTML/CSS", "Node.js", "SQL", "Git"],
+      "exemplos": [
+        "Conversion-optimized landing pages",
+        "Interactive dashboards for data analysis",
+        "System integration via APIs"
+      ]
     },
     {
       "title": "Process Automation",
       "desc": "Automation of repetitive tasks and workflow optimization to increase efficiency and reduce errors.",
-      "skills": ["Python", "RPA", "APIs", "System Integration", "DevOps", "Process Analysis"]
+      "skills": ["Python", "RPA", "APIs", "System Integration", "DevOps", "Process Analysis"],
+      "exemplos": [
+        "Financial process optimization with RPA",
+        "Automation of management reports",
+        "Automatic integration between legacy systems"
+      ]
     }
   ],
   "portfolio_cards": [
     {
-      "title": "Data Analysis System with AI",
-      "desc": "Development of a data analysis pipeline using Machine Learning for business insights.",
-      "technologies": ["Python", "Pandas", "Scikit-learn", "Matplotlib"],
-      "status": "In progress"
+      "title": "E-commerce Recommendation System",
+      "desc": "Developed a personalized recommendation system that increased related product sales by 25%. Responsible for the entire AI architecture, backend integration, and cloud deployment.",
+      "technologies": ["Python", "TensorFlow", "Flask", "AWS", "React"],
+      "status": "Done",
+      "github": "https://github.com/HiRenan/recomendacao-ecommerce",
+      "demo": "https://demo-ecommerce.com",
+      "image": "/portfolio/recomendacao.png"
     },
     {
-      "title": "Report Automation",
-      "desc": "Automated system for generating business reports with integration of multiple data sources.",
-      "technologies": ["Python", "SQL", "APIs", "Excel"],
-      "status": "Done"
+      "title": "Financial Process Automation",
+      "desc": "Implemented RPA for bank reconciliation automation, reducing processing time by 60%. Project included process analysis, bot development, and team training.",
+      "technologies": ["Python", "UiPath", "SQL Server", "Power BI"],
+      "status": "Done",
+      "github": "https://github.com/HiRenan/automacao-financeira",
+      "demo": "",
+      "image": "/portfolio/automacao-financeira.png"
     },
     {
-      "title": "Responsive Website",
-      "desc": "Development of a modern corporate website with responsive design and SEO optimization.",
-      "technologies": ["React", "JavaScript", "CSS", "HTML"],
-      "status": "Done"
+      "title": "Healthcare Data Analysis Dashboard",
+      "desc": "Created an interactive dashboard for hospital indicators analysis, enabling faster, data-driven decisions. Resulted in a 40% increase in report efficiency.",
+      "technologies": ["React", "Node.js", "MongoDB", "D3.js"],
+      "status": "In progress",
+      "github": "https://github.com/HiRenan/dashboard-saude",
+      "demo": "https://dashboard-saude.com",
+      "image": "/portfolio/dashboard-saude.png"
     }
   ],
   "portfolio_status": {
@@ -111,5 +135,15 @@
     "name_placeholder": "Enter your name",
     "email_placeholder": "Enter your email",
     "message_placeholder": "Enter your message"
-  }
+  },
+  "testimonials": [
+    {
+      "author": "John Smith, AI Professor",
+      "text": "Renan is a dedicated professional, always seeking the best solution for each challenge. His ability to learn quickly and apply new knowledge is impressive."
+    },
+    {
+      "author": "Mary Souza, team colleague",
+      "text": "Working with Renan means delivery and innovation. He combines technical vision with empathy and collaboration."
+    }
+  ]
 } 

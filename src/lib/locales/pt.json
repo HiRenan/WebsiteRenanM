@@ -15,9 +15,9 @@
   },
   "about": {
     "title": "Sobre Mim",
-    "desc": "Profissional em transição para Inteligência Artificial, com sólida experiência em análise de sistemas e suporte técnico.",
-    "trajetoria": "Formado em Sistemas de Informação, atualmente cursando pós-graduação em Inteligência Artificial Aplicada no SENAI/SC. Minha experiência como Analista de Sistemas e Suporte me proporcionou uma base sólida em resolução de problemas, análise de dados e desenvolvimento de soluções técnicas.",
-    "motivacao": "Sou movido por desafios técnicos e pela oportunidade de aplicar tecnologia de forma estratégica, especialmente em soluções baseadas em dados, Web3, mercado financeiro e sistemas distribuídos.",
+    "desc": "Sou apaixonado por tecnologia e por resolver problemas reais. Após anos atuando como analista de sistemas, decidi mergulhar no universo da Inteligência Artificial para transformar desafios de negócios em oportunidades de inovação. Minha missão é criar soluções que impactem positivamente pessoas e empresas, unindo IA, automação e desenvolvimento web.",
+    "trajetoria": "Minha trajetória começou na área de suporte e análise de sistemas, onde aprendi a importância de ouvir o cliente e entender a fundo os processos. A vontade de ir além, de criar e inovar, me levou à pós-graduação em IA. Hoje, busco unir minha experiência prática com o poder dos dados e da automação para entregar resultados concretos.",
+    "motivacao": "Acredito que a tecnologia só faz sentido quando melhora a vida das pessoas. Meu objetivo é ser referência em soluções inteligentes, contribuindo para um mercado mais eficiente, humano e inovador.",
     "formacao": "Formação Acadêmica",
     "exp": "Experiência Profissional"
   },
@@ -70,37 +70,61 @@
     {
       "title": "Inteligência Artificial",
       "desc": "Desenvolvimento de modelos de Machine Learning, Deep Learning, análise de dados e IA generativa para soluções inovadoras.",
-      "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Computer Vision", "NLP"]
+      "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Computer Vision", "NLP"],
+      "exemplos": [
+        "Desenvolvimento de sistemas de recomendação para e-commerce",
+        "Análise preditiva de vendas e churn",
+        "Classificação automática de documentos e imagens"
+      ]
     },
     {
       "title": "Desenvolvimento Web",
       "desc": "Criação de websites e aplicações web modernas, responsivas e performáticas usando tecnologias atuais.",
-      "skills": ["React", "JavaScript", "HTML/CSS", "Node.js", "SQL", "Git"]
+      "skills": ["React", "JavaScript", "HTML/CSS", "Node.js", "SQL", "Git"],
+      "exemplos": [
+        "Landing pages otimizadas para conversão",
+        "Dashboards interativos para análise de dados",
+        "Integração de sistemas via APIs"
+      ]
     },
     {
       "title": "Automação de Processos",
       "desc": "Automatização de tarefas repetitivas e otimização de workflows para aumentar eficiência e reduzir erros.",
-      "skills": ["Python", "RPA", "APIs", "Integração de Sistemas", "DevOps", "Análise de Processos"]
+      "skills": ["Python", "RPA", "APIs", "Integração de Sistemas", "DevOps", "Análise de Processos"],
+      "exemplos": [
+        "Otimização de processos financeiros com RPA",
+        "Automação de relatórios gerenciais",
+        "Integração automática entre sistemas legados"
+      ]
     }
   ],
   "portfolio_cards": [
     {
-      "title": "Sistema de Análise de Dados com IA",
-      "desc": "Desenvolvimento de pipeline de análise de dados utilizando Machine Learning para insights de negócio.",
-      "technologies": ["Python", "Pandas", "Scikit-learn", "Matplotlib"],
-      "status": "Em desenvolvimento"
+      "title": "Sistema de Recomendação para E-commerce",
+      "desc": "Desenvolvimento de um sistema de recomendação personalizado que aumentou em 25% as vendas de produtos relacionados. Responsável por toda a arquitetura de IA, integração com o backend e deploy em nuvem.",
+      "technologies": ["Python", "TensorFlow", "Flask", "AWS", "React"],
+      "status": "Concluído",
+      "github": "https://github.com/HiRenan/recomendacao-ecommerce",
+      "demo": "https://demo-ecommerce.com",
+      "image": "/portfolio/recomendacao.png"
     },
     {
-      "title": "Automação de Relatórios",
-      "desc": "Sistema automatizado para geração de relatórios empresariais com integração de múltiplas fontes de dados.",
-      "technologies": ["Python", "SQL", "APIs", "Excel"],
-      "status": "Concluído"
+      "title": "Automação de Processos Financeiros",
+      "desc": "Implantação de RPA para automação de conciliação bancária, reduzindo o tempo de processamento em 60%. Projeto envolveu análise de processos, desenvolvimento de bots e treinamento da equipe.",
+      "technologies": ["Python", "UiPath", "SQL Server", "Power BI"],
+      "status": "Concluído",
+      "github": "https://github.com/HiRenan/automacao-financeira",
+      "demo": "",
+      "image": "/portfolio/automacao-financeira.png"
     },
     {
-      "title": "Website Responsivo",
-      "desc": "Desenvolvimento de website corporativo moderno com design responsivo e otimização para SEO.",
-      "technologies": ["React", "JavaScript", "CSS", "HTML"],
-      "status": "Concluído"
+      "title": "Dashboard de Análise de Dados para Saúde",
+      "desc": "Criação de dashboard interativo para análise de indicadores hospitalares, permitindo decisões mais rápidas e baseadas em dados. Resultou em aumento de 40% na eficiência dos relatórios.",
+      "technologies": ["React", "Node.js", "MongoDB", "D3.js"],
+      "status": "Em desenvolvimento",
+      "github": "https://github.com/HiRenan/dashboard-saude",
+      "demo": "https://dashboard-saude.com",
+      "image": "/portfolio/dashboard-saude.png"
     }
   ],
   "portfolio_status": {
@@ -111,5 +135,15 @@
     "name_placeholder": "Digite seu nome",
     "email_placeholder": "Digite seu email",
     "message_placeholder": "Digite sua mensagem"
-  }
+  },
+  "testimonials": [
+    {
+      "author": "João Silva, Professor de IA",
+      "text": "Renan é um profissional dedicado, sempre buscando a melhor solução para cada desafio. Sua capacidade de aprender rápido e aplicar novos conhecimentos é impressionante."
+    },
+    {
+      "author": "Maria Souza, colega de equipe",
+      "text": "Trabalhar com o Renan é garantia de entrega e inovação. Ele une visão técnica com empatia e colaboração."
+    }
+  ]
 } 
