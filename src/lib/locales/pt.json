@@ -11,7 +11,8 @@
     "highlight": "soluções inteligentes",
     "desc": "Especialista em Inteligência Artificial, Desenvolvimento Web e Automação de Processos. Criando soluções inovadoras que impulsionam negócios e otimizam resultados.",
     "cta_services": "Ver Serviços",
-    "cta_portfolio": "Portfólio"
+    "cta_portfolio": "Portfólio",
+    "full": "Transformando desafios de negócios em <1>soluções inteligentes</1> com IA e Automação."
   },
   "about": {
     "title": "Sobre Mim",
@@ -136,14 +137,20 @@
     "email_placeholder": "Digite seu email",
     "message_placeholder": "Digite sua mensagem"
   },
-  "testimonials": [
-    {
-      "author": "João Silva, Professor de IA",
-      "text": "Renan é um profissional dedicado, sempre buscando a melhor solução para cada desafio. Sua capacidade de aprender rápido e aplicar novos conhecimentos é impressionante."
-    },
-    {
-      "author": "Maria Souza, colega de equipe",
-      "text": "Trabalhar com o Renan é garantia de entrega e inovação. Ele une visão técnica com empatia e colaboração."
-    }
-  ]
+  "testimonials": {
+    "title": "Depoimentos",
+    "list": [
+      {
+        "author": "João Silva, Professor de IA",
+        "text": "Renan é um profissional dedicado, sempre buscando a melhor solução para cada desafio. Sua capacidade de aprender rápido e aplicar novos conhecimentos é impressionante."
+      },
+      {
+        "author": "Maria Souza, colega de equipe",
+        "text": "Trabalhar com o Renan é garantia de entrega e inovação. Ele une visão técnica com empatia e colaboração."
+      }
+    ]
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  }
 } 

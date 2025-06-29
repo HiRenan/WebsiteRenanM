@@ -11,7 +11,8 @@
     "highlight": "smart solutions",
     "desc": "Specialist in Artificial Intelligence, Web Development and Process Automation. Creating innovative solutions that drive business and optimize results.",
     "cta_services": "See Services",
-    "cta_portfolio": "Portfolio"
+    "cta_portfolio": "Portfolio",
+    "full": "Turning business challenges into <1>smart solutions</1> with AI and Automation."
   },
   "about": {
     "title": "About Me",
@@ -136,14 +137,20 @@
     "email_placeholder": "Enter your email",
     "message_placeholder": "Enter your message"
   },
-  "testimonials": [
-    {
-      "author": "John Smith, AI Professor",
-      "text": "Renan is a dedicated professional, always seeking the best solution for each challenge. His ability to learn quickly and apply new knowledge is impressive."
-    },
-    {
-      "author": "Mary Souza, team colleague",
-      "text": "Working with Renan means delivery and innovation. He combines technical vision with empathy and collaboration."
-    }
-  ]
+  "testimonials": {
+    "title": "Testimonials",
+    "list": [
+      {
+        "author": "John Smith, AI Professor",
+        "text": "Renan is a dedicated professional, always seeking the best solution for each challenge. His ability to learn quickly and apply new knowledge is impressive."
+      },
+      {
+        "author": "Mary Souza, team colleague",
+        "text": "Working with Renan means delivery and innovation. He combines technical vision with empathy and collaboration."
+      }
+    ]
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
 } 

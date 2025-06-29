@@ -8,6 +8,9 @@ import { Moon, Sun } from 'lucide-react'
 import './App.css'
 import './lib/i18n.js'
 import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
+import BackToTop from './components/BackToTop.jsx'
+import { Trans } from 'react-i18next'
 
 // Import das imagens
 import heroImage from './assets/hero_section_image.png'
@@ -196,7 +199,9 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                Transformando desafios de negócios em <span className="text-blue-600 dark:text-blue-400">soluções inteligentes</span> com IA e Automação.
+                <Trans i18nKey="hero.full">
+                  Transformando desafios de negócios em <span className="text-blue-600 dark:text-blue-400">soluções inteligentes</span> com IA e Automação.
+                </Trans>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 {t('hero.desc')}
@@ -218,7 +223,14 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white dark:bg-gray-900">
+      <motion.section
+        id="about"
+        className="py-20 bg-white dark:bg-gray-900"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('about.title')}</h2>
@@ -243,9 +255,9 @@ function App() {
 
               {/* Depoimentos */}
               <div className="mt-12">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Depoimentos</h4>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('testimonials.title')}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {t('testimonials', { returnObjects: true }).map((testi, idx) => (
+                  {t('testimonials.list', { returnObjects: true }).map((testi, idx) => (
                     <div key={idx} className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 shadow">
                       <p className="italic text-gray-700 dark:text-gray-200 mb-2">"{testi.text}"</p>
                       <span className="block text-sm text-gray-500 dark:text-gray-400 font-medium">{testi.author}</span>
@@ -279,7 +291,7 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-gray-50 dark:bg-gray-950">
@@ -291,41 +303,31 @@ function App() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-0 shadow-md bg-white dark:bg-gray-800 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white dark:hover:from-gray-700 dark:hover:to-gray-800 cursor-pointer">
-                <CardHeader className="text-center pb-4">
-                  <div className="flex justify-center mb-4">
-                    <div className="group-hover:scale-110 transition-transform duration-300">
-                      <img src={service.image} alt={service.title} className="w-20 h-20 object-contain" />
-                    </div>
+              <motion.div
+                key={index}
+                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200 dark:hover:border-blue-500 cursor-pointer min-h-[320px]"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+              >
+                <CardHeader className="pb-2 flex flex-col items-center">
+                  <div className="mb-4">
+                    <img src={service.image} alt={service.title} className="w-20 h-20 object-contain rounded-lg shadow" />
                   </div>
-                  <CardTitle className="text-xl mb-2 group-hover:text-blue-600 transition-colors duration-300 dark:text-white dark:group-hover:text-blue-400">{service.title}</CardTitle>
+                  <CardTitle className="text-lg font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2 min-h-[48px] text-center">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300 dark:text-gray-200 dark:group-hover:text-gray-100">{service.desc}</p>
-                  {service.exemplos && (
-                    <>
-                      <h5 className="font-semibold text-blue-600 dark:text-blue-400 mb-2 flex items-center gap-2">
-                        <svg className="w-4 h-4 inline-block" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2l4 -4" /></svg>
-                        Exemplos de Aplicação
-                      </h5>
-                      <ul className="mb-4 pl-4 space-y-1">
-                        {service.exemplos.map((ex, i) => (
-                          <li key={i} className="flex items-start gap-2 text-gray-700 dark:text-gray-200 text-sm">
-                            <span className="mt-1 text-blue-500 dark:text-blue-300">•</span> {ex}
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                  <div className="flex flex-wrap gap-2">
+                <CardContent className="flex-1 flex flex-col justify-between">
+                  <p className="text-gray-600 dark:text-gray-200 mb-4 text-sm leading-relaxed">{service.desc}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {service.skills.map((skill, skillIndex) => (
-                      <Badge key={skillIndex} variant="outline" className="text-xs group-hover:bg-blue-100 group-hover:border-blue-300 group-hover:text-blue-700 transition-all duration-300 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:group-hover:bg-blue-900 dark:group-hover:border-blue-800 dark:group-hover:text-blue-200">
+                      <Badge key={skillIndex} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 px-2 py-1">
                         {skill}
                       </Badge>
                     ))}
                   </div>
                 </CardContent>
-              </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -341,24 +343,31 @@ function App() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-gray-800 hover:bg-gradient-to-br hover:from-green-50 hover:to-white dark:hover:from-gray-700 dark:hover:to-gray-800 cursor-pointer border-0 shadow-md">
-                <CardHeader>
-                  <CardTitle className="text-lg group-hover:text-green-600 transition-colors duration-300 dark:text-white dark:group-hover:text-green-400">{project.title}</CardTitle>
-                  <Badge variant={portfolioStatus[project.status === 'Concluído' || project.status === 'Done' ? 'done' : 'in_progress']} className="w-fit group-hover:scale-105 transition-transform duration-300 dark:bg-gray-700 dark:text-gray-100 dark:group-hover:bg-green-900 dark:group-hover:text-green-200">
+              <motion.div
+                key={index}
+                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200 dark:hover:border-blue-500 cursor-pointer min-h-[320px]"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+              >
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2 min-h-[48px]">{project.title}</CardTitle>
+                  <Badge variant={portfolioStatus[project.status === 'Concluído' || project.status === 'Done' ? 'done' : 'in_progress']} className="w-fit group-hover:scale-105 transition-transform duration-300 dark:bg-gray-700 dark:text-gray-100 dark:group-hover:bg-green-900 dark:group-hover:text-green-200 mt-2 mb-2">
                     {project.status}
                   </Badge>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300 dark:text-gray-200 dark:group-hover:text-gray-100">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2">
+                <CardContent className="flex-1 flex flex-col justify-between">
+                  <p className="text-gray-600 dark:text-gray-200 mb-4 text-sm leading-relaxed">{project.desc}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="text-xs group-hover:bg-green-100 group-hover:border-green-300 group-hover:text-green-700 transition-all duration-300 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:group-hover:bg-green-900 dark:group-hover:border-green-800 dark:group-hover:text-green-200">
+                      <Badge key={techIndex} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 px-2 py-1">
                         {tech}
                       </Badge>
                     ))}
                   </div>
                 </CardContent>
-              </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -450,11 +459,13 @@ function App() {
       <footer className="bg-gray-800 dark:bg-gray-950 text-gray-300 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p>&copy; 2025 Renan Mocelin. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Renan Mocelin. {t('footer.rights')}</p>
             <p className="mt-2 text-sm">Desenvolvido com React e Tailwind CSS</p>
           </div>
         </div>
       </footer>
+
+      <BackToTop />
     </div>
   )
 }
