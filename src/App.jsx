@@ -178,7 +178,7 @@ function App() {
               </div>
               {/* Toggle Dark Mode e Idioma */}
               <div className="flex items-center space-x-2 ml-4">
-                <Sun className={`w-5 h-5 ${theme === 'light' ? 'text-yellow-400' : 'text-gray-400'}`} />
+                <Sun className={`w-5 h-5 ${theme === 'light' ? 'text-yellow-400' : 'text-yellow-300'}`} />
                 <Switch
                   checked={theme === 'dark'}
                   onCheckedChange={checked => setTheme(checked ? 'dark' : 'light')}
@@ -187,7 +187,11 @@ function App() {
                 <Moon className={`w-5 h-5 ${theme === 'dark' ? 'text-blue-400' : 'text-gray-400'}`} />
                 <button
                   onClick={() => i18n.changeLanguage(i18n.language === 'pt' ? 'en' : 'pt')}
-                  className="ml-4 px-2 py-1 rounded text-xs font-semibold border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+                  className={`ml-4 px-2 py-1 rounded text-xs font-semibold border transition-colors
+                    ${theme === 'dark'
+                      ? 'border-primary bg-gray-800 text-primary-foreground hover:bg-primary/20'
+                      : 'border-gray-300 bg-gray-100 text-gray-700 hover:bg-blue-100'}
+                  `}
                   aria-label="Trocar idioma"
                 >
                   {i18n.language === 'pt' ? 'EN' : 'PT'}
@@ -261,7 +265,7 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 title-gradient">{t('about.title')}</h2>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 title-gradient">{t('about.title')}</h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('about.desc')}</p>
             </motion.div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -416,19 +420,18 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('portfolio.title')}</h2>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 title-gradient">{t('portfolio.title')}</h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('portfolio.desc')}</p>
             </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  className="group rounded-2xl shadow-lg border border-gray-200 dark:border-blue-900 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 flex flex-col justify-between min-h-[320px] cursor-pointer"
-                  initial={{ opacity: 0, y: 60 }}
+                  className="group rounded-2xl shadow-lg border border-gray-200 dark:border-blue-900 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 flex flex-col justify-between min-h-[320px] cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: index * 0.15, ease: 'easeOut' }}
-                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(59,130,246,0.18)' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
                 >
                   <CardHeader className="pb-2">
                     <CardTitle className="text-lg font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2 min-h-[48px]">{project.title}</CardTitle>
@@ -471,7 +474,7 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 title-gradient">{t('contact.title')}</h2>
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-4 title-gradient">{t('contact.title')}</h2>
               <p className="text-xl max-w-3xl mx-auto text-gray-700 dark:text-gray-300">{t('contact.desc')}</p>
             </motion.div>
             <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-16"
@@ -489,14 +492,13 @@ function App() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <Linkedin className="w-5 h-5 icon-accent" />
-                    <a href="https://www.linkedin.com/in/renan-mocelin-br/" target="_blank" rel="noopener noreferrer" 
-                       className="hover:text-blue-400 transition-colors text-gray-800 dark:text-gray-200">
+                    <a href="https://www.linkedin.com/in/renan-mocelin-br/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors text-gray-800 dark:text-gray-200">
                       LinkedIn: renan-mocelin-br
                     </a>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Github className="w-5 h-5 icon-accent" />
-                    <a href="https://github.com/HiRenan" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors text-gray-800 dark:text-gray-200">
+                    <a href="https://github.com/HiRenan" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors text-gray-800 dark:text-gray-200">
                       GitHub: HiRenan
                     </a>
                   </div>
@@ -544,7 +546,7 @@ function App() {
                         <textarea rows="4" name="mensagem" required placeholder={t('form.message_placeholder')} className={"w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" + (formErrors.mensagem ? ' border-red-500' : '')}></textarea>
                         {formErrors.mensagem && <div className="text-red-500 dark:text-red-400 text-xs mt-1">{formErrors.mensagem}</div>}
                       </div>
-                      <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">{t('contact.send')}</Button>
+                      <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-300">{t('contact.send')}</Button>
                       {formStatus === 'success' && (
                         <div className="text-green-600 dark:text-green-400 text-center font-medium mt-2">{t('contact.success')}</div>
                       )}
