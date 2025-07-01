@@ -13,9 +13,10 @@ import BackToTop from './components/BackToTop.jsx'
 import { Trans } from 'react-i18next'
 import { Typewriter } from 'react-simple-typewriter'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
+import { Dialog, DialogTrigger, DialogContent } from './components/ui/dialog'
 
 // Import das imagens
-import heroImage from './assets/hero_section_image.png'
+import heroImage from './assets/image-inicio.png'
 import aiImage from './assets/ai_highlight_image.png'
 import webdevImage from './assets/webdev_highlight_image.png'
 import automationImage from './assets/automation_highlight_image.png'
@@ -276,11 +277,22 @@ function App() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
               >
-                <img
-                  src={minhaFoto}
-                  alt="Foto de Renan Mocelin"
-                  className="w-48 h-48 object-cover rounded-full shadow-lg mb-8 border-4 border-blue-100 dark:border-blue-900"
-                />
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <img
+                      src={minhaFoto}
+                      alt="Foto de Renan Mocelin"
+                      className="w-48 h-48 object-cover rounded-full shadow-lg mb-8 border-4 border-blue-100 dark:border-blue-900 cursor-pointer transition-transform hover:scale-105"
+                    />
+                  </DialogTrigger>
+                  <DialogContent className="flex flex-col items-center bg-transparent border-none shadow-none p-0">
+                    <img
+                      src={minhaFoto}
+                      alt="Foto de Renan Mocelin"
+                      className="max-w-full max-h-[80vh] rounded-2xl shadow-2xl border-4 border-blue-200 dark:border-blue-800"
+                    />
+                  </DialogContent>
+                </Dialog>
                 <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">{t('about.trajetoria_title', i18n.language === 'pt' ? 'Minha Trajetória' : 'My Journey')}</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{t('about.trajetoria')}</p>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">{t('about.motivacao')}</p>
