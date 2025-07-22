@@ -344,8 +344,49 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
   }
 
   return (
-    <section className="py-28 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-indigo-900/20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-28 relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-indigo-900/20">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Animated Gradient Orbs */}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+
+        {/* Floating Particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 20}s`,
+                animationDuration: `${20 + Math.random() * 20}s`
+              }}
+            ></div>
+          ))}
+        </div>
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
+
+        {/* Neural Network Lines */}
+        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.1"/>
+              <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.2"/>
+              <stop offset="100%" stopColor="#ec4899" stopOpacity="0.1"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,100 Q250,50 500,100 T1000,100" stroke="url(#line-gradient)" strokeWidth="2" fill="none" className="animate-pulse"/>
+          <path d="M0,200 Q300,150 600,200 T1200,200" stroke="url(#line-gradient)" strokeWidth="1" fill="none" className="animate-pulse" style={{animationDelay: '1s'}}/>
+          <path d="M0,300 Q400,250 800,300 T1600,300" stroke="url(#line-gradient)" strokeWidth="1" fill="none" className="animate-pulse" style={{animationDelay: '2s'}}/>
+        </svg>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 40 }}
@@ -358,7 +399,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
               <Brain className="w-8 h-8 text-white" />
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 title-gradient">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 title-gradient-animated">
             {t('ai_demo.title', 'Demo de IA Interativa')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -374,7 +415,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
           >
-            <Card className="h-full">
+            <Card className="h-full card-hover-effect border-0 shadow-xl">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-blue-500" />
@@ -461,7 +502,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
           >
-            <Card className="h-full">
+            <Card className="h-full card-hover-effect border-0 shadow-xl">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
