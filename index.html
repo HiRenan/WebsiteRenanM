@@ -3,8 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
 
   <!-- Performance Meta Tags -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,31 +32,43 @@
 
   <!-- SEO Meta Tags -->
   <meta name="description"
-    content="Renan Mocelin - Especialista em Inteligência Artificial, Desenvolvimento Web e Automação. Soluções inovadoras em IA, sites modernos e automação de processos." />
+    content="Renan Mocelin - Especialista em Inteligência Artificial, Desenvolvimento Web e Automação. Transformando desafios de negócios em soluções inteligentes com IA, sites modernos e automação de processos." />
   <meta name="keywords"
-    content="Inteligência Artificial, Desenvolvimento Web, Automação, Python, React, Machine Learning, RPA, UiPath" />
+    content="Inteligência Artificial, Desenvolvimento Web, Automação, Python, React, Machine Learning, RPA, UiPath, AI, Web Development, Process Automation, Florianópolis, Santa Catarina" />
   <meta name="author" content="Renan Mocelin" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow" />
+  <meta name="geo.region" content="BR-SC" />
+  <meta name="geo.placename" content="Florianópolis, Santa Catarina" />
+  <meta name="geo.position" content="-27.5954;-48.5480" />
+  <meta name="ICBM" content="-27.5954, -48.5480" />
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Renan Mocelin - Especialista em IA, Web e Automação" />
   <meta property="og:description"
-    content="Soluções inovadoras em Inteligência Artificial, Desenvolvimento Web e Automação de Processos." />
+    content="Soluções inovadoras em Inteligência Artificial, Desenvolvimento Web e Automação de Processos. Transformando desafios de negócios em soluções inteligentes." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://renanmocelin.com" />
-  <meta property="og:site_name" content="Renan Mocelin" />
+  <meta property="og:url" content="https://renanm.vercel.app" />
+  <meta property="og:site_name" content="Renan Mocelin Portfolio" />
   <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://renanm.vercel.app/hero_section_image.png" />
+  <meta property="og:image:alt" content="Renan Mocelin - Portfolio de IA, Web Development e Automação" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Renan Mocelin - Especialista em IA, Web e Automação" />
   <meta name="twitter:description"
-    content="Soluções inovadoras em Inteligência Artificial, Desenvolvimento Web e Automação de Processos." />
+    content="Soluções inovadoras em Inteligência Artificial, Desenvolvimento Web e Automação de Processos. Transformando desafios de negócios em soluções inteligentes." />
+  <meta name="twitter:image" content="https://renanm.vercel.app/hero_section_image.png" />
+  <meta name="twitter:image:alt" content="Renan Mocelin - Portfolio de IA, Web Development e Automação" />
+  <meta name="twitter:site" content="@renanmocelin" />
   <meta name="twitter:creator" content="@renanmocelin" />
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://renanmocelin.com" />
+  <link rel="canonical" href="https://renanm.vercel.app" />
 
   <!-- Schema Markup JSON-LD -->
   <script type="application/ld+json">
@@ -63,10 +78,10 @@
     "name": "Renan Mocelin",
     "jobTitle": "Especialista em Inteligência Artificial e Desenvolvimento Web",
     "description": "Profissional especializado em Inteligência Artificial, Desenvolvimento Web e Automação de Processos",
-    "url": "https://renanmocelin.com",
+    "url": "https://renanm.vercel.app",
     "sameAs": [
       "https://github.com/HiRenan",
-      "https://linkedin.com/in/renanmocelin"
+      "https://www.linkedin.com/in/renan-mocelin-br/"
     ],
     "knowsAbout": [
       "Inteligência Artificial",
@@ -78,20 +93,36 @@
       "RPA",
       "UiPath"
     ],
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Universidade Federal de Santa Catarina"
-    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Estácio"
+      }
+    ],
     "hasCredential": [
       {
         "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Graduação",
+        "credentialCategory": "Bacharelado em Tecnologia da Informação",
         "recognizedBy": {
           "@type": "Organization",
-          "name": "Universidade Federal de Santa Catarina"
+          "name": "Estácio"
+        }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Pós-graduação em Inteligência Artificial Aplicada",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "SENAI/SC"
         }
       }
-    ]
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Florianópolis",
+      "addressRegion": "SC",
+      "addressCountry": "BR"
+    }
   }
   </script>
 

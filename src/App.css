@@ -150,6 +150,44 @@ img:hover, .rounded-full:hover {
   box-shadow: 0 6px 32px 0 rgba(59,130,246,0.13);
 }
 
+/* Animação para loading de imagens */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+/* Animação de breathing para elementos especiais */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.breathe-animation {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Animação de float para elementos flutuantes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
 /* Gradientes de fundo para seções principais */
 .hero-gradient {
   background: linear-gradient(120deg, #e0e7ff 0%, #f0fdfa 100%);

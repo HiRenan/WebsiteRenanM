@@ -1,13 +1,136 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Renan Mocelin | AI, Web Dev & Automation Specialist</title>
-  <script type="module" crossorigin src="/assets/index-BIzy2M0L.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BADyrFEr.css">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Performance Meta Tags -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#3B82F6" />
+  <meta name="msapplication-TileColor" content="#3B82F6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Renan Mocelin" />
+
+  <!-- DNS Prefetch para recursos externos -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//unpkg.com" />
+
+  <!-- Preconnect para conexões críticas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Preload de recursos críticos -->
+  <link rel="preload" href="data:text/jsx;base64,aW1wb3J0IHsgU3RyaWN0TW9kZSB9IGZyb20gJ3JlYWN0JwppbXBvcnQgeyBjcmVhdGVSb290IH0gZnJvbSAncmVhY3QtZG9tL2NsaWVudCcKaW1wb3J0ICcuL2luZGV4LmNzcycKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC5qc3gnCgpjcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyb290JykpLnJlbmRlcigKICA8U3RyaWN0TW9kZT4KICAgIDxBcHAgLz4KICA8L1N0cmljdE1vZGU+LAopCg==" as="script" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Renan Mocelin - Especialista em Inteligência Artificial, Desenvolvimento Web e Automação. Transformando desafios de negócios em soluções inteligentes com IA, sites modernos e automação de processos." />
+  <meta name="keywords"
+    content="Inteligência Artificial, Desenvolvimento Web, Automação, Python, React, Machine Learning, RPA, UiPath, AI, Web Development, Process Automation, Florianópolis, Santa Catarina" />
+  <meta name="author" content="Renan Mocelin" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="geo.region" content="BR-SC" />
+  <meta name="geo.placename" content="Florianópolis, Santa Catarina" />
+  <meta name="geo.position" content="-27.5954;-48.5480" />
+  <meta name="ICBM" content="-27.5954, -48.5480" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Renan Mocelin - Especialista em IA, Web e Automação" />
+  <meta property="og:description"
+    content="Soluções inovadoras em Inteligência Artificial, Desenvolvimento Web e Automação de Processos. Transformando desafios de negócios em soluções inteligentes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://renanm.vercel.app" />
+  <meta property="og:site_name" content="Renan Mocelin Portfolio" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://renanm.vercel.app/hero_section_image.png" />
+  <meta property="og:image:alt" content="Renan Mocelin - Portfolio de IA, Web Development e Automação" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Renan Mocelin - Especialista em IA, Web e Automação" />
+  <meta name="twitter:description"
+    content="Soluções inovadoras em Inteligência Artificial, Desenvolvimento Web e Automação de Processos. Transformando desafios de negócios em soluções inteligentes." />
+  <meta name="twitter:image" content="https://renanm.vercel.app/hero_section_image.png" />
+  <meta name="twitter:image:alt" content="Renan Mocelin - Portfolio de IA, Web Development e Automação" />
+  <meta name="twitter:site" content="@renanmocelin" />
+  <meta name="twitter:creator" content="@renanmocelin" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://renanm.vercel.app" />
+
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Renan Mocelin",
+    "jobTitle": "Especialista em Inteligência Artificial e Desenvolvimento Web",
+    "description": "Profissional especializado em Inteligência Artificial, Desenvolvimento Web e Automação de Processos",
+    "url": "https://renanm.vercel.app",
+    "sameAs": [
+      "https://github.com/HiRenan",
+      "https://www.linkedin.com/in/renan-mocelin-br/"
+    ],
+    "knowsAbout": [
+      "Inteligência Artificial",
+      "Machine Learning",
+      "Desenvolvimento Web",
+      "React",
+      "Python",
+      "Automação de Processos",
+      "RPA",
+      "UiPath"
+    ],
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Estácio"
+      }
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Bacharelado em Tecnologia da Informação",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Estácio"
+        }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Pós-graduação em Inteligência Artificial Aplicada",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "SENAI/SC"
+        }
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Florianópolis",
+      "addressRegion": "SC",
+      "addressCountry": "BR"
+    }
+  }
+  </script>
+
+  <title>Renan Mocelin - Especialista em IA, Web e Automação</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-Dtzwu3ki.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B0hyvjvG.css">
 </head>
 
 <body>

@@ -10,6 +10,13 @@ import './lib/i18n.js'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import BackToTop from './components/BackToTop.jsx'
+import OptimizedImage from './components/OptimizedImage.jsx'
+import MobileMenu from './components/MobileMenu.jsx'
+import ScrollProgress from './components/ScrollProgress.jsx'
+import ProjectFilters from './components/ProjectFilters.jsx'
+import TechStack from './components/TechStack.jsx'
+import ProjectModal from './components/ProjectModal.jsx'
+import AIDemo from './components/AIDemo.jsx'
 import { Trans } from 'react-i18next'
 import { Typewriter } from 'react-simple-typewriter'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
@@ -20,12 +27,15 @@ import heroImage from './assets/image-inicio.png'
 import aiImage from './assets/ai_highlight_image.png'
 import webdevImage from './assets/webdev_highlight_image.png'
 import automationImage from './assets/automation_highlight_image.png'
-import minhaFoto from './assets/minha-foto.jpg'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
   const [formStatus, setFormStatus] = useState(null)
+  const [formLoading, setFormLoading] = useState(false)
   const [theme, setTheme] = useState('light')
+  const [projectFilter, setProjectFilter] = useState('all')
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const { t, i18n } = useTranslation()
   const [formErrors, setFormErrors] = useState({})
 
@@ -74,7 +84,15 @@ function App() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      // Offset para compensar a navbar fixa
+      const navbarHeight = 64 // 16 * 4 = 64px (h-16)
+      const elementPosition = element.offsetTop - navbarHeight
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
+
       setActiveSection(sectionId)
     }
   }
@@ -88,8 +106,37 @@ function App() {
     image: [aiImage, webdevImage, automationImage][idx],
   }))
   // Portfólio
-  const projects = t('portfolio_cards', { returnObjects: true })
+  const allProjects = t('portfolio_cards', { returnObjects: true })
   const portfolioStatus = t('portfolio_status', { returnObjects: true })
+
+  // Filtrar projetos baseado no filtro ativo
+  const filterProjects = (filter) => {
+    if (filter === 'all') return allProjects
+
+    const techCategories = {
+      'ai': ['Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy'],
+      'web': ['React', 'Next.js', 'Vue.js', 'Node.js', 'Express', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Flask', 'Django', 'FastAPI'],
+      'automation': ['UiPath', 'Selenium', 'RPA', 'Power Automate']
+    }
+
+    return allProjects.filter(project =>
+      project.technologies.some(tech =>
+        techCategories[filter]?.includes(tech)
+      )
+    )
+  }
+
+  const projects = filterProjects(projectFilter)
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
+  }
 
   const validateForm = (data) => {
     const errors = {}
@@ -108,11 +155,17 @@ function App() {
   const handleContactSubmit = async (e) => {
     e.preventDefault()
     setFormStatus(null)
+    setFormLoading(true)
     const form = e.target
     const data = new FormData(form)
     const errors = validateForm(data)
     setFormErrors(errors)
-    if (Object.keys(errors).length > 0) return
+
+    if (Object.keys(errors).length > 0) {
+      setFormLoading(false)
+      return
+    }
+
     try {
       const response = await fetch('https://formspree.io/f/mblyqevg', {
         method: 'POST',
@@ -124,54 +177,82 @@ function App() {
       if (response.ok) {
         setFormStatus('success')
         form.reset()
+        setFormErrors({})
       } else {
         setFormStatus('error')
       }
     } catch {
       setFormStatus('error')
+    } finally {
+      setFormLoading(false)
     }
   }
 
   return (
     <ParallaxProvider>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+        <ScrollProgress />
         {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm shadow-sm z-50">
+        <nav className="fixed top-0 w-full bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm shadow-sm z-50" role="navigation" aria-label="Navegação principal">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
-              <div className="font-bold text-xl text-gray-900 dark:text-white hover:text-blue-600 transition-colors cursor-pointer">Renan Mocelin</div>
-              <div className="hidden md:flex space-x-8">
+              <div
+                className="font-bold text-xl text-gray-900 dark:text-white hover:text-blue-600 transition-colors cursor-pointer"
+                onClick={() => scrollToSection('home')}
+                onKeyDown={(e) => e.key === 'Enter' && scrollToSection('home')}
+                tabIndex="0"
+                role="button"
+                aria-label="Ir para o início"
+              >
+                Renan Mocelin
+              </div>
+              <div className="hidden md:flex space-x-8" role="menubar">
                 <button
                   onClick={() => scrollToSection('home')}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative group ${activeSection === 'home' ? 'text-blue-600' : ''}`}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'home' ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                  role="menuitem"
+                  aria-current={activeSection === 'home' ? 'page' : undefined}
+                  aria-label="Navegar para seção inicial"
                 >
                   {t('nav.home')}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'home' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </button>
                 <button
                   onClick={() => scrollToSection('about')}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative group ${activeSection === 'about' ? 'text-blue-600' : ''}`}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'about' ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                  role="menuitem"
+                  aria-current={activeSection === 'about' ? 'page' : undefined}
+                  aria-label="Navegar para seção sobre mim"
                 >
                   {t('nav.about')}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </button>
                 <button
                   onClick={() => scrollToSection('services')}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative group ${activeSection === 'services' ? 'text-blue-600' : ''}`}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'services' ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                  role="menuitem"
+                  aria-current={activeSection === 'services' ? 'page' : undefined}
+                  aria-label="Navegar para seção de serviços"
                 >
                   {t('nav.services')}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'services' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </button>
                 <button
                   onClick={() => scrollToSection('portfolio')}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative group ${activeSection === 'portfolio' ? 'text-blue-600' : ''}`}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'portfolio' ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                  role="menuitem"
+                  aria-current={activeSection === 'portfolio' ? 'page' : undefined}
+                  aria-label="Navegar para seção de portfólio"
                 >
                   {t('nav.portfolio')}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </button>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative group ${activeSection === 'contact' ? 'text-blue-600' : ''}`}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                  role="menuitem"
+                  aria-current={activeSection === 'contact' ? 'page' : undefined}
+                  aria-label="Navegar para seção de contato"
                 >
                   {t('nav.contact')}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'contact' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
@@ -198,6 +279,14 @@ function App() {
                   {i18n.language === 'pt' ? 'EN' : 'PT'}
                 </button>
               </div>
+
+              {/* Mobile Menu */}
+              <MobileMenu
+                activeSection={activeSection}
+                scrollToSection={scrollToSection}
+                theme={theme}
+                setTheme={setTheme}
+              />
             </div>
           </div>
         </nav>
@@ -212,34 +301,84 @@ function App() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 title-gradient font-title">
+                <motion.h1
+                  className="text-4xl md:text-6xl font-bold mb-6 title-gradient font-title"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+                >
                   <Typewriter
-                    words={["Transformando desafios de negócios em soluções inteligentes com IA e Automação.", "Desenvolvimento Web de Alto Impacto.", "Automação para o seu negócio."]}
+                    words={[
+                      "Transformando desafios de negócios em soluções inteligentes com IA e Automação.",
+                      "Desenvolvimento Web de Alto Impacto e Performance.",
+                      "Automação Inteligente para o seu negócio.",
+                      "Especialista em IA, Web Development e Process Automation."
+                    ]}
                     loop={0}
                     cursor
-                    cursorStyle="_"
-                    typeSpeed={60}
-                    deleteSpeed={40}
-                    delaySpeed={2000}
+                    cursorStyle="|"
+                    typeSpeed={45}
+                    deleteSpeed={30}
+                    delaySpeed={2500}
+                    cursorBlinking={true}
                   />
-                </h1>
-                <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                </motion.h1>
+                <motion.p
+                  className="text-xl text-gray-600 dark:text-gray-300 mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
+                >
                   {t('hero.desc')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button onClick={() => scrollToSection('services')} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg dark:bg-blue-500 dark:hover:bg-blue-600">
-                    {t('hero.cta_services')}
-                  </Button>
-                  <Button onClick={() => scrollToSection('portfolio')} variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg dark:border-blue-400 dark:text-blue-300 dark:hover:bg-gray-800">
-                    {t('hero.cta_portfolio')}
-                  </Button>
-                </div>
+                </motion.p>
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      onClick={() => scrollToSection('services')}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg dark:bg-blue-500 dark:hover:bg-blue-600 shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {t('hero.cta_services')}
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      onClick={() => scrollToSection('portfolio')}
+                      variant="outline"
+                      className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg dark:border-blue-400 dark:text-blue-300 dark:hover:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {t('hero.cta_portfolio')}
+                    </Button>
+                  </motion.div>
+                </motion.div>
               </div>
-              <div className="flex justify-center">
+              <motion.div
+                className="flex justify-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 1, ease: 'easeOut' }}
+              >
                 <Parallax speed={30}>
-                  <img src={heroImage} alt="AI, Web Development and Automation" className="max-w-full h-auto rounded-lg shadow-lg" />
+                  <OptimizedImage
+                    src={heroImage}
+                    alt="AI, Web Development and Automation"
+                    className="max-w-full h-auto rounded-lg shadow-lg float-animation"
+                    priority={true}
+                  />
                 </Parallax>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -279,17 +418,19 @@ function App() {
               >
                 <Dialog>
                   <DialogTrigger asChild>
-                    <img
-                      src={minhaFoto}
+                    <OptimizedImage
+                      src="/minha-foto.jpg"
                       alt="Foto de Renan Mocelin"
                       className="w-48 h-48 object-cover rounded-full shadow-lg mb-8 border-4 border-blue-100 dark:border-blue-900 cursor-pointer transition-transform hover:scale-105"
+                      priority={true}
                     />
                   </DialogTrigger>
                   <DialogContent className="flex flex-col items-center bg-transparent border-none shadow-none p-0">
-                    <img
-                      src={minhaFoto}
+                    <OptimizedImage
+                      src="/minha-foto.jpg"
                       alt="Foto de Renan Mocelin"
                       className="max-w-full max-h-[80vh] rounded-2xl shadow-2xl border-4 border-blue-200 dark:border-blue-800"
+                      priority={true}
                     />
                   </DialogContent>
                 </Dialog>
@@ -378,20 +519,40 @@ function App() {
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('services.desc')}</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, staggerChildren: 0.2 }}
+            >
               {services.map((service, index) => (
                 <motion.div
                   key={index}
                   className="group rounded-2xl shadow-lg border border-gray-200 dark:border-blue-900 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 flex flex-col justify-between min-h-[320px] cursor-pointer"
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: index * 0.15, ease: 'easeOut' }}
-                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(59,130,246,0.18)' }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    scale: { duration: 0.6 }
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -8,
+                    boxShadow: '0 20px 40px 0 rgba(59,130,246,0.25)',
+                    transition: { duration: 0.3, ease: 'easeOut' }
+                  }}
                 >
                   <CardHeader className="pb-2 flex flex-col items-center">
                     <div className="mb-4 flex flex-col items-center">
-                      <img src={service.image} alt={service.title} className="w-20 h-20 object-contain rounded-lg shadow" />
+                      <OptimizedImage
+                        src={service.image}
+                        alt={service.title}
+                        className="w-20 h-20 object-contain rounded-lg shadow"
+                      />
                       <span className="mt-2">
                         {index === 0 && <Brain className="w-7 h-7 text-blue-500" />}
                         {index === 1 && <Code className="w-7 h-7 text-green-500" />}
@@ -414,9 +575,15 @@ function App() {
                   </CardContent>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
+
+        {/* Tech Stack Section */}
+        <TechStack />
+
+        {/* AI Demo Section */}
+        <AIDemo />
 
         {/* Portfolio Section */}
         <section id="portfolio" className="py-28 bg-white dark:bg-gray-900" style={{ position: 'relative', overflow: 'visible' }}>
@@ -435,15 +602,41 @@ function App() {
               <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 title-gradient">{t('portfolio.title')}</h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('portfolio.desc')}</p>
             </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {/* Project Filters */}
+            <ProjectFilters
+              projects={allProjects}
+              onFilterChange={setProjectFilter}
+              activeFilter={projectFilter}
+            />
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, staggerChildren: 0.1 }}
+            >
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  className="group rounded-2xl shadow-lg border border-gray-200 dark:border-blue-900 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 flex flex-col justify-between min-h-[320px] cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
+                  className="group rounded-2xl shadow-lg border border-gray-200 dark:border-blue-900 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 flex flex-col justify-between min-h-[320px] cursor-pointer"
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.7,
+                    delay: index * 0.1,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }}
+                  whileHover={{
+                    scale: 1.03,
+                    y: -6,
+                    boxShadow: '0 16px 32px 0 rgba(59,130,246,0.2)',
+                    transition: { duration: 0.3, ease: 'easeOut' }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleProjectClick(project)}
                 >
                   <CardHeader className="pb-2">
                     <CardTitle className="text-lg font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2 min-h-[48px]">{project.title}</CardTitle>
@@ -453,17 +646,51 @@ function App() {
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col justify-between">
                     <p className="text-gray-600 dark:text-gray-200 mb-4 text-sm leading-relaxed">{project.desc}</p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.technologies.map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 px-2 py-1">
-                          {tech}
-                        </Badge>
-                      ))}
+
+                    <div className="space-y-3 mt-auto">
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech, techIndex) => (
+                          <Badge key={techIndex} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 px-2 py-1">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      {/* Project Links */}
+                      <div className="flex gap-2 pt-2">
+                        {project.github && (
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Github size={12} />
+                            Código
+                          </motion.a>
+                        )}
+                        {project.demo && (
+                          <motion.a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-white bg-blue-600 dark:bg-blue-500 rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <ExternalLink size={12} />
+                            Demo
+                          </motion.a>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -522,17 +749,50 @@ function App() {
                   </div>
                 </div>
                 
-                <div className="mt-8">
+                <motion.div
+                  className="mt-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
                   <h4 className="text-lg font-semibold mb-4">{t('contact.areas')}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge className="bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all duration-300 cursor-pointer">{t('badges.ai', 'Inteligência Artificial')}</Badge>
-                    <Badge className="bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all duration-300 cursor-pointer">{t('badges.ml', 'Machine Learning')}</Badge>
-                    <Badge className="bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all duration-300 cursor-pointer">{t('badges.web', 'Desenvolvimento Web')}</Badge>
-                    <Badge className="bg-green-600 hover:bg-green-700 hover:scale-105 transition-all duration-300 cursor-pointer">{t('badges.automation', 'Automação')}</Badge>
-                    <Badge className="bg-green-600 hover:bg-green-700 hover:scale-105 transition-all duration-300 cursor-pointer">{t('badges.bigdata', 'Big Data')}</Badge>
-                    <Badge className="bg-green-600 hover:bg-green-700 hover:scale-105 transition-all duration-300 cursor-pointer">{t('badges.web3', 'Web3')}</Badge>
-                  </div>
-                </div>
+                  <motion.div
+                    className="flex flex-wrap gap-2"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4, staggerChildren: 0.1 }}
+                  >
+                    {[
+                      { key: 'ai', text: t('badges.ai', 'Inteligência Artificial'), color: 'blue' },
+                      { key: 'ml', text: t('badges.ml', 'Machine Learning'), color: 'blue' },
+                      { key: 'web', text: t('badges.web', 'Desenvolvimento Web'), color: 'blue' },
+                      { key: 'automation', text: t('badges.automation', 'Automação'), color: 'green' },
+                      { key: 'bigdata', text: t('badges.bigdata', 'Big Data'), color: 'green' },
+                      { key: 'web3', text: t('badges.web3', 'Web3'), color: 'green' }
+                    ].map((badge, index) => (
+                      <motion.div
+                        key={badge.key}
+                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        whileHover={{
+                          scale: 1.1,
+                          y: -2,
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                          transition: { duration: 0.2 }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Badge className={`${badge.color === 'blue' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700'} transition-all duration-300 cursor-pointer`}>
+                          {badge.text}
+                        </Badge>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </motion.div>
               </div>
               
               <div>
@@ -558,7 +818,20 @@ function App() {
                         <textarea rows="4" name="mensagem" required placeholder={t('form.message_placeholder')} className={"w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" + (formErrors.mensagem ? ' border-red-500' : '')}></textarea>
                         {formErrors.mensagem && <div className="text-red-500 dark:text-red-400 text-xs mt-1">{formErrors.mensagem}</div>}
                       </div>
-                      <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-300">{t('contact.send')}</Button>
+                      <Button
+                        type="submit"
+                        disabled={formLoading}
+                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
+                      >
+                        {formLoading ? (
+                          <div className="flex items-center justify-center space-x-2">
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <span>{t('contact.sending', 'Enviando...')}</span>
+                          </div>
+                        ) : (
+                          t('contact.send')
+                        )}
+                      </Button>
                       {formStatus === 'success' && (
                         <div className="text-green-600 dark:text-green-400 text-center font-medium mt-2">{t('contact.success')}</div>
                       )}
@@ -584,6 +857,13 @@ function App() {
         </footer>
 
         <BackToTop />
+
+        {/* Project Modal */}
+        <ProjectModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
       </div>
     </ParallaxProvider>
   )

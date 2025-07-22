@@ -41,6 +41,7 @@
     "email": "Email",
     "message": "Mensagem",
     "send": "Enviar Mensagem",
+    "sending": "Enviando...",
     "success": "Mensagem enviada com sucesso! Obrigado pelo contato.",
     "error": "Ocorreu um erro ao enviar. Tente novamente mais tarde."
   },
@@ -152,5 +153,59 @@
   },
   "footer": {
     "rights": "Todos os direitos reservados."
+  },
+  "filters": {
+    "all": "Todos",
+    "ai": "IA/ML",
+    "web": "Web Dev",
+    "automation": "Automação",
+    "showing": "Mostrando projetos de"
+  },
+  "techstack": {
+    "title": "Tech Stack",
+    "desc": "Tecnologias e ferramentas que domino para criar soluções inovadoras",
+    "ai": "Inteligência Artificial & ML",
+    "web": "Desenvolvimento Web",
+    "automation": "Automação & RPA",
+    "database": "Banco de Dados",
+    "cloud": "Cloud & DevOps",
+    "visualization": "Visualização de Dados"
+  },
+  "ai_demo": {
+    "title": "Demo de IA Interativa",
+    "desc": "Experimente o poder da inteligência artificial. Escolha um prompt ou crie o seu próprio!",
+    "input": {
+      "title": "Seu Prompt",
+      "desc": "Escolha um template ou escreva seu próprio prompt"
+    },
+    "output": {
+      "title": "Resposta da IA",
+      "desc": "Resultado gerado pela inteligência artificial"
+    },
+    "prompts": {
+      "business": {
+        "title": "Estratégia de Negócios",
+        "desc": "Gere ideias para melhorar um negócio"
+      },
+      "code": {
+        "title": "Solução de Código",
+        "desc": "Resolva problemas de programação"
+      },
+      "automation": {
+        "title": "Automação de Processos",
+        "desc": "Automatize tarefas repetitivas"
+      },
+      "content": {
+        "title": "Criação de Conteúdo",
+        "desc": "Crie conteúdo profissional"
+      }
+    },
+    "custom_prompt": "Ou escreva seu próprio prompt:",
+    "placeholder": "Digite sua pergunta ou solicitação aqui...",
+    "generate": "Gerar com IA",
+    "generating": "Gerando...",
+    "processing": "Processando sua solicitação...",
+    "waiting": "Aguardando seu prompt para gerar uma resposta...",
+    "copy": "Copiar"
   }
 } 
