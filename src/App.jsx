@@ -208,7 +208,9 @@ function App() {
               >
                 Renan Mocelin
               </div>
-              <div className="hidden md:flex space-x-8" role="menubar">
+
+              {/* Desktop Navigation and Controls */}
+              <div className="hidden md:flex items-center space-x-8" role="menubar">
                 <button
                   onClick={() => scrollToSection('home')}
                   className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'home' ? 'text-blue-600 dark:text-blue-400' : ''}`}
@@ -259,27 +261,28 @@ function App() {
                   {t('nav.contact')}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'contact' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </button>
-              </div>
-              {/* Toggle Dark Mode e Idioma */}
-              <div className="flex items-center space-x-2 ml-4">
-                <Sun className={`w-5 h-5 ${theme === 'light' ? 'text-yellow-400' : 'text-yellow-300'}`} />
-                <Switch
-                  checked={theme === 'dark'}
-                  onCheckedChange={checked => setTheme(checked ? 'dark' : 'light')}
-                  aria-label="Alternar modo escuro"
-                />
-                <Moon className={`w-5 h-5 ${theme === 'dark' ? 'text-blue-400' : 'text-gray-400'}`} />
-                <button
-                  onClick={() => i18n.changeLanguage(i18n.language === 'pt' ? 'en' : 'pt')}
-                  className={`ml-4 px-2 py-1 rounded text-xs font-semibold border transition-colors
-                    ${theme === 'dark'
-                      ? 'border-primary bg-gray-800 text-primary-foreground hover:bg-primary/20'
-                      : 'border-gray-300 bg-gray-100 text-gray-700 hover:bg-blue-100'}
-                  `}
-                  aria-label="Trocar idioma"
-                >
-                  {i18n.language === 'pt' ? 'EN' : 'PT'}
-                </button>
+
+                {/* Desktop Controls - Toggle Dark Mode e Idioma */}
+                <div className="flex items-center space-x-2 ml-4">
+                  <Sun className={`w-5 h-5 ${theme === 'light' ? 'text-yellow-400' : 'text-yellow-300'}`} />
+                  <Switch
+                    checked={theme === 'dark'}
+                    onCheckedChange={checked => setTheme(checked ? 'dark' : 'light')}
+                    aria-label="Alternar modo escuro"
+                  />
+                  <Moon className={`w-5 h-5 ${theme === 'dark' ? 'text-blue-400' : 'text-gray-400'}`} />
+                  <button
+                    onClick={() => i18n.changeLanguage(i18n.language === 'pt' ? 'en' : 'pt')}
+                    className={`ml-4 px-2 py-1 rounded text-xs font-semibold border transition-colors
+                      ${theme === 'dark'
+                        ? 'border-primary bg-gray-800 text-primary-foreground hover:bg-primary/20'
+                        : 'border-gray-300 bg-gray-100 text-gray-700 hover:bg-blue-100'}
+                    `}
+                    aria-label="Trocar idioma"
+                  >
+                    {i18n.language === 'pt' ? 'EN' : 'PT'}
+                  </button>
+                </div>
               </div>
 
               {/* Mobile Menu */}
