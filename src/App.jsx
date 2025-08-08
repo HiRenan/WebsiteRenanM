@@ -62,7 +62,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'portfolio', 'contact']
+      const sections = ['home', 'about', 'services', 'techstack', 'ai', 'portfolio', 'contact']
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -361,12 +361,8 @@ function App() {
                 >
                   <span className="leading-tight">
                     <Typewriter
-                      words={[
-                        "Especialista em IA, Web Development e Automação",
-                        "Transformando desafios em soluções inteligentes",
-                        "Desenvolvimento Web de Alto Impacto",
-                        "Automação Inteligente para negócios"
-                      ]}
+                      key={i18n.language}
+                      words={t('hero.typewriter', { returnObjects: true })}
                       loop={0}
                       cursor
                       cursorStyle="|"

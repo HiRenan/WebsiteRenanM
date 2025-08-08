@@ -14,7 +14,13 @@
     "desc": "Specialist in Artificial Intelligence, Web Development and Process Automation. Creating innovative solutions that drive business and optimize results.",
     "cta_services": "See Services",
     "cta_portfolio": "Portfolio",
-    "full": "Turning business challenges into <1>smart solutions</1> with AI and Automation."
+    "full": "Turning business challenges into <1>smart solutions</1> with AI and Automation.",
+    "typewriter": [
+      "Specialist in AI, Web Development and Automation",
+      "Turning challenges into smart solutions",
+      "High-Impact Web Development",
+      "Intelligent Automation for business"
+    ]
   },
   "about": {
     "title": "About Me",

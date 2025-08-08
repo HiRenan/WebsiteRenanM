@@ -14,7 +14,13 @@
     "desc": "Especialista em Inteligência Artificial, Desenvolvimento Web e Automação de Processos. Criando soluções inovadoras que impulsionam negócios e otimizam resultados.",
     "cta_services": "Ver Serviços",
     "cta_portfolio": "Portfólio",
-    "full": "Transformando desafios de negócios em <1>soluções inteligentes</1> com IA e Automação."
+    "full": "Transformando desafios de negócios em <1>soluções inteligentes</1> com IA e Automação.",
+    "typewriter": [
+      "Especialista em IA, Desenvolvimento Web e Automação",
+      "Transformando desafios em soluções inteligentes",
+      "Desenvolvimento Web de Alto Impacto",
+      "Automação inteligente para negócios"
+    ]
   },
   "about": {
     "title": "Sobre Mim",
