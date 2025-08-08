@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button.jsx'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
-import { Badge } from '@/components/ui/badge.jsx'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Brain, Code, Cog } from 'lucide-react'
-import { Switch } from '@/components/ui/switch.jsx'
+import { Switch } from '@/components/ui/switch'
 import { Moon, Sun } from 'lucide-react'
 import './App.css'
 import './lib/i18n.js'
@@ -21,7 +21,8 @@ import AIDemo from './components/AIDemo.jsx'
 import { Trans } from 'react-i18next'
 import { Typewriter } from 'react-simple-typewriter'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
-import { Dialog, DialogTrigger, DialogContent } from './components/ui/dialog'
+import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog'
+import { FORM } from '@/lib/constants'
 
 // Import das imagens
 import heroImage from './assets/image-inicio.png'
@@ -85,15 +86,7 @@ function App() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      // Offset para compensar a navbar fixa
-      const navbarHeight = 64 // 16 * 4 = 64px (h-16)
-      const elementPosition = element.offsetTop - navbarHeight
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      })
-
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       setActiveSection(sectionId)
     }
   }
@@ -159,6 +152,12 @@ function App() {
     setFormLoading(true)
     const form = e.target
     const data = new FormData(form)
+
+    // Honeypot anti-spam
+    if (data.get('website')) {
+      setFormLoading(false)
+      return
+    }
     const errors = validateForm(data)
     setFormErrors(errors)
 
@@ -168,7 +167,7 @@ function App() {
     }
 
     try {
-      const response = await fetch('https://formspree.io/f/mblyqevg', {
+      const response = await fetch(FORM.endpoint, {
         method: 'POST',
         body: data,
         headers: {
@@ -240,6 +239,26 @@ function App() {
                 >
                   {t('nav.services')}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'services' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                </button>
+                <button
+                  onClick={() => scrollToSection('techstack')}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'techstack' ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                  role="menuitem"
+                  aria-current={activeSection === 'techstack' ? 'page' : undefined}
+                  aria-label="Navegar para seção de tech stack"
+                >
+                   {t('nav.techstack')}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'techstack' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                </button>
+                <button
+                  onClick={() => scrollToSection('ai')}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative group ${activeSection === 'ai' ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                  role="menuitem"
+                  aria-current={activeSection === 'ai' ? 'page' : undefined}
+                  aria-label="Navegar para seção de IA"
+                >
+                  {t('nav.ai')}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${activeSection === 'ai' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </button>
                 <button
                   onClick={() => scrollToSection('portfolio')}
@@ -331,7 +350,7 @@ function App() {
               </defs>
             </svg>
           </Parallax>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 relative z-10">
+          <div id="content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <motion.h1
@@ -509,17 +528,17 @@ function App() {
                     />
                   </DialogContent>
                 </Dialog>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">{t('about.trajetoria_title', i18n.language === 'pt' ? 'Minha Trajetória' : 'My Journey')}</h3>
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">{t('about.trajetoria_title')}</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{t('about.trajetoria')}</p>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">{t('about.motivacao')}</p>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('about.formacao', i18n.language === 'pt' ? 'Formação Acadêmica' : 'Academic Background')}</h4>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('about.formacao')}</h4>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">{t('about.pg_title', i18n.language === 'pt' ? 'Pós-graduação em Inteligência Artificial Aplicada' : 'Postgraduate in Applied Artificial Intelligence')}</p>
+                    <p className="font-medium text-gray-900 dark:text-white">{t('about.pg_title')}</p>
                     <p className="text-gray-600 dark:text-gray-300">SENAI/SC • 2025-2026</p>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">{t('about.bacharel_title', i18n.language === 'pt' ? 'Bacharelado em Tecnologia da Informação' : 'Bachelor in Information Technology')}</p>
+                    <p className="font-medium text-gray-900 dark:text-white">{t('about.bacharel_title')}</p>
                     <p className="text-gray-600 dark:text-gray-300">Estácio • 2020-2024</p>
                   </div>
                 </div>
@@ -999,12 +1018,12 @@ function App() {
                     transition={{ duration: 0.6, delay: 0.4, staggerChildren: 0.1 }}
                   >
                     {[
-                      { key: 'ai', text: t('badges.ai', 'Inteligência Artificial'), color: 'blue' },
-                      { key: 'ml', text: t('badges.ml', 'Machine Learning'), color: 'blue' },
-                      { key: 'web', text: t('badges.web', 'Desenvolvimento Web'), color: 'blue' },
-                      { key: 'automation', text: t('badges.automation', 'Automação'), color: 'green' },
-                      { key: 'bigdata', text: t('badges.bigdata', 'Big Data'), color: 'green' },
-                      { key: 'web3', text: t('badges.web3', 'Web3'), color: 'green' }
+                      { key: 'ai', text: t('badges.ai'), color: 'blue' },
+                      { key: 'ml', text: t('badges.ml'), color: 'blue' },
+                      { key: 'web', text: t('badges.web'), color: 'blue' },
+                      { key: 'automation', text: t('badges.automation'), color: 'green' },
+                      { key: 'bigdata', text: t('badges.bigdata'), color: 'green' },
+                      { key: 'web3', text: t('badges.web3'), color: 'green' }
                     ].map((badge, index) => (
                       <motion.div
                         key={badge.key}
@@ -1036,7 +1055,9 @@ function App() {
                     <CardDescription className="text-gray-600 dark:text-gray-300 font-body">{t('contact.form_desc')}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <form onSubmit={handleContactSubmit} className="space-y-4">
+            <form onSubmit={handleContactSubmit} className="space-y-4">
+              {/* Honeypot */}
+              <input type="text" name="website" tabIndex="-1" autoComplete="off" className="hidden" aria-hidden="true" />
                       <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('contact.name')}</label>
                         <input type="text" name="nome" required placeholder={t('form.name_placeholder')} className={"w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" + (formErrors.nome ? ' border-red-500' : '')} />
@@ -1060,7 +1081,7 @@ function App() {
                         {formLoading ? (
                           <div className="flex items-center justify-center space-x-2">
                             <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            <span>{t('contact.sending', 'Enviando...')}</span>
+                         <span>{t('contact.sending')}</span>
                           </div>
                         ) : (
                           t('contact.send')

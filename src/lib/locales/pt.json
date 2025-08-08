@@ -3,6 +3,8 @@
     "home": "Início",
     "about": "Sobre",
     "services": "Serviços",
+    "techstack": "Tech Stack",
+    "ai": "IA",
     "portfolio": "Portfólio",
     "contact": "Contato"
   },
@@ -19,6 +21,9 @@
     "desc": "Sou apaixonado por tecnologia e por resolver problemas reais. Após anos atuando como analista de sistemas, decidi mergulhar no universo da Inteligência Artificial para transformar desafios de negócios em oportunidades de inovação. Minha missão é criar soluções que impactem positivamente pessoas e empresas, unindo IA, automação e desenvolvimento web.",
     "trajetoria": "Minha trajetória começou na área de suporte e análise de sistemas, onde aprendi a importância de ouvir o cliente e entender a fundo os processos. A vontade de ir além, de criar e inovar, me levou à pós-graduação em IA. Hoje, busco unir minha experiência prática com o poder dos dados e da automação para entregar resultados concretos.",
     "motivacao": "Acredito que a tecnologia só faz sentido quando melhora a vida das pessoas. Meu objetivo é ser referência em soluções inteligentes, contribuindo para um mercado mais eficiente, humano e inovador.",
+    "trajetoria_title": "Minha Trajetória",
+    "pg_title": "Pós-graduação em Inteligência Artificial Aplicada",
+    "bacharel_title": "Bacharelado em Tecnologia da Informação",
     "formacao": "Formação Acadêmica",
     "exp": "Experiência Profissional"
   },
@@ -44,6 +49,14 @@
     "sending": "Enviando...",
     "success": "Mensagem enviada com sucesso! Obrigado pelo contato.",
     "error": "Ocorreu um erro ao enviar. Tente novamente mais tarde."
+  },
+  "badges": {
+    "ai": "Inteligência Artificial",
+    "ml": "Machine Learning",
+    "web": "Desenvolvimento Web",
+    "automation": "Automação",
+    "bigdata": "Big Data",
+    "web3": "Web3"
   },
   "experience": [
     {
@@ -206,6 +219,7 @@
     "generating": "Gerando...",
     "processing": "Processando sua solicitação...",
     "waiting": "Aguardando seu prompt para gerar uma resposta...",
-    "copy": "Copiar"
+    "copy": "Copiar",
+    "personal_mode_note": "Modo Q&A pessoal: faça perguntas sobre o Renan (formação, skills, localização, contatos)."
   }
 } 

@@ -8,7 +8,7 @@ const TechStack = () => {
 
   const techCategories = [
     {
-      title: t('techstack.ai', 'Inteligência Artificial & ML'),
+      title: t('techstack.ai'),
       icon: <Brain className="w-6 h-6" />,
       color: 'from-purple-500 to-pink-500',
       bgColor: 'bg-purple-50 dark:bg-purple-900/20',
@@ -19,7 +19,7 @@ const TechStack = () => {
       ]
     },
     {
-      title: t('techstack.web', 'Desenvolvimento Web'),
+      title: t('techstack.web'),
       icon: <Code className="w-6 h-6" />,
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-50 dark:bg-blue-900/20',
@@ -30,7 +30,7 @@ const TechStack = () => {
       ]
     },
     {
-      title: t('techstack.automation', 'Automação & RPA'),
+      title: t('techstack.automation'),
       icon: <Cog className="w-6 h-6" />,
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-50 dark:bg-green-900/20',
@@ -41,7 +41,7 @@ const TechStack = () => {
       ]
     },
     {
-      title: t('techstack.database', 'Banco de Dados'),
+      title: t('techstack.database'),
       icon: <Database className="w-6 h-6" />,
       color: 'from-orange-500 to-red-500',
       bgColor: 'bg-orange-50 dark:bg-orange-900/20',
@@ -52,7 +52,7 @@ const TechStack = () => {
       ]
     },
     {
-      title: t('techstack.cloud', 'Cloud & DevOps'),
+      title: t('techstack.cloud'),
       icon: <Cloud className="w-6 h-6" />,
       color: 'from-indigo-500 to-purple-500',
       bgColor: 'bg-indigo-50 dark:bg-indigo-900/20',
@@ -63,7 +63,7 @@ const TechStack = () => {
       ]
     },
     {
-      title: t('techstack.visualization', 'Visualização de Dados'),
+      title: t('techstack.visualization'),
       icon: <BarChart3 className="w-6 h-6" />,
       color: 'from-teal-500 to-green-500',
       bgColor: 'bg-teal-50 dark:bg-teal-900/20',
@@ -76,7 +76,7 @@ const TechStack = () => {
   ]
 
   return (
-    <section className="py-28 relative overflow-hidden bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50 dark:from-gray-900 dark:via-slate-900/20 dark:to-zinc-900/20">
+    <section id="techstack" className="py-28 relative overflow-hidden bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50 dark:from-gray-900 dark:via-slate-900/20 dark:to-zinc-900/20">
       {/* TechStack Background Effects */}
       <div className="absolute inset-0">
         {/* Animated Gradient Orbs */}
@@ -135,12 +135,8 @@ const TechStack = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 title-gradient-animated">
-            {t('techstack.title', 'Tech Stack')}
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            {t('techstack.desc', 'Tecnologias e ferramentas que domino para criar soluções inovadoras')}
-          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 title-gradient-animated">{t('techstack.title')}</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('techstack.desc')}</p>
         </motion.div>
 
         <motion.div 

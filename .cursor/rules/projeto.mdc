@@ -1,0 +1,101 @@
+---
+description: "Regras gerais do WebsiteRenanM (React 19 + Vite 6 + Tailwind CSS 4 + shadcn/ui + i18next). Padrões de código, UI, i18n, performance, SEO, acessibilidade e build."
+globs:
+  - "src/**/*"
+  - "index.html"
+  - "public/**/*"
+  - "tailwind.config.js"
+  - "vite.config.js"
+  - "package.json"
+alwaysApply: true
+---
+
+## Objetivo
+
+Estabelecer diretrizes claras para evolução do site profissional do Renan Mocelin, garantindo consistência visual, qualidade de código, acessibilidade, i18n e alta performance.
+
+## Stack e Convenções
+
+- **Stack**: React 19 + Vite 6, Tailwind CSS 4, shadcn/ui (componentes em `src/components/ui`), i18next, framer-motion, react-scroll-parallax.
+- **Alias**: Use imports absolutos com `@` apontando para `src` (configurado em `vite.config.js` e `jsconfig.json`).
+- **Nomeação**:
+  - Componentes: `PascalCase` em `src/components/*` e export default apenas se houver um componente por arquivo.
+  - Utilitários/helpers: `camelCase` em `src/lib` ou `src/hooks` (custom hooks iniciam com `use`).
+  - Assets: `kebab-case` em `src/assets`/`public`.
+- **Estrutura**: Evite arquivos/classes grandes. Extraia trechos reutilizáveis para componentes, hooks ou utils coesos.
+
+## Tailwind, Tema e UI (shadcn)
+
+- **Tailwind 4**: Priorize classes utilitárias. Evite CSS global fora de `src/index.css`.
+- **Tema/Dark mode**: Controlado via classe `dark` no `html`. Persista o tema em `localStorage` (chave `theme`). Componentes devem respeitar variáveis CSS definidas em `src/index.css` (ex.: `--primary`).
+- **shadcn/ui**: Importe sempre de `@/components/ui/<componente>.jsx`. Ao estender estilos, use `class-variance-authority` e `tailwind-merge`. Mantenha variantes e naming consistentes.
+- **Componentes próprios**: Reutilize `OptimizedImage`, `ProjectModal`, `ProjectFilters`, `MobileMenu`, `MeshBackground`, `ScrollProgress` quando aplicável. Não duplique padrões já existentes.
+
+## i18n (i18next)
+
+- Padrão `pt` com fallback `pt`. Texto exibido deve vir de `t('chave')`. Evite strings hardcoded em JSX.
+- Ao adicionar conteúdo, crie chaves em `src/lib/locales/pt.json` e `en.json` com os mesmos paths. Não quebre chaves existentes.
+- Para listas/objetos traduzidos, use `t('chave', { returnObjects: true })` como já feito em `App.jsx`.
+
+## Acessibilidade (a11y)
+
+- Forneça `aria-label`, `role`, `aria-current` e foco por teclado onde fizer sentido (menus, botões, modais).
+- Links externos devem usar `rel="noopener noreferrer"` quando `target="_blank"`.
+- Garanta contraste suficiente entre texto e fundo em ambos os temas.
+- Respeite `prefers-reduced-motion`: evite animações agressivas sem fallback; use padrões já existentes no CSS.
+
+## Performance
+
+- **Imagens**: Use `OptimizedImage` para imagens locais; `priority={true}` apenas para elementos acima da dobra. Prefira `public/` para estáticas grandes.
+- **Animações**: Use `framer-motion` com transições leves; reduza intensidade em mobile. Evite layouts que causem CLS.
+- **Imports**: Mantenha imports enxutos. Evite carregar libs pesadas desnecessariamente na Home.
+- **Vite**: Aproveite alias e splitting padrão. Não quebre o `react-refresh` em dev.
+
+## SEO e Metadados
+
+- Meta tags, Open Graph e Twitter Card estão em `index.html`. Atualize descrições e imagens sociais quando o branding mudar.
+- Mantenha `canonical`, JSON-LD e `sitemap.xml`/`robots.txt` coerentes com a URL de produção.
+
+## Formulários e Integrações
+
+- Valide sempre no cliente (como em `handleContactSubmit`). Endpoints externos (ex.: Formspree) devem ser configuráveis; prefira centralizar URLs em um módulo `src/lib/utils.js` ou similar quando crescer.
+- Trate estados de carregamento/erro e mensagens de sucesso com feedback visual claro.
+
+## Padrões de Código
+
+- Use funções curtas e com early-returns. Evite aninhamentos profundos.
+- Tipagem: este projeto é JS; documente funções públicas com JSDoc quando a assinatura for complexa.
+- Ordene imports: core (react), libs, componentes locais, assets, estilos.
+- Lint deve ficar limpo: `pnpm lint` sem erros/avisos antes de commitar.
+
+## Segurança
+
+- Não exponha dados sensíveis no client. Para chaves de terceiros, use backends/proxies quando necessário.
+- Sanitize inputs de formulários; nunca insira HTML de usuário sem sanitização.
+
+## Build, Scripts e Deploy
+
+- Scripts: `pnpm dev`, `pnpm build`, `pnpm preview`, `pnpm lint`.
+- Deploy recomendado: Vercel. Garanta que `dist/` seja gerado sem erros e que a URL pública esteja refletida em metas de `index.html`.
+
+## Quando editar cada arquivo
+
+- `index.html`: apenas metadados, fontes, PWA. Evite scripts inline pesados.
+- `src/index.css`: tokens de tema, animações globais e resets. Evite regras específicas de página.
+- `tailwind.config.js`: extensão de tema; mantenha `content` atualizado se mover arquivos.
+- `vite.config.js`: alias e plugins (React, Tailwind). Não incluir plugins que quebrem HMR.
+
+## Boas práticas específicas deste projeto
+
+- Navegação por âncoras considera `navbarHeight` fixo; ajuste com cautela para evitar deslocamentos.
+- Seções usam padrões de fundo (gradients/particles). Em novas seções, respeite intensidade e acessibilidade.
+- `ProjectFilters` e categorias de tech devem se manter sincronizados com as chaves de `locales`.
+
+## Checklist antes de abrir PR/commit
+
+- [ ] i18n atualizado em `pt.json` e `en.json` (sem chaves órfãs)
+- [ ] UI consistente com `shadcn/ui` e tokens de tema
+- [ ] A11y básico validado (tab navigation, labels)
+- [ ] Lighthouse sem quedas relevantes (Perf/SEO/A11y/Best Practices ≥ 90)
+- [ ] `pnpm lint` passou
+- [ ] Build local ok: `pnpm build` e `pnpm preview`

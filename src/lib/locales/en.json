@@ -3,6 +3,8 @@
     "home": "Home",
     "about": "About",
     "services": "Services",
+    "techstack": "Tech Stack",
+    "ai": "AI",
     "portfolio": "Portfolio",
     "contact": "Contact"
   },
@@ -19,6 +21,9 @@
     "desc": "I am passionate about technology and solving real-world problems. After years working as a systems analyst, I decided to dive into the world of Artificial Intelligence to turn business challenges into innovation opportunities. My mission is to create solutions that positively impact people and companies, combining AI, automation, and web development.",
     "trajetoria": "My journey began in support and systems analysis, where I learned the importance of listening to the client and deeply understanding processes. The desire to go further, to create and innovate, led me to a postgraduate degree in AI. Today, I seek to combine my practical experience with the power of data and automation to deliver concrete results.",
     "motivacao": "I believe technology only makes sense when it improves people's lives. My goal is to be a reference in smart solutions, contributing to a more efficient, human, and innovative market.",
+    "trajetoria_title": "My Journey",
+    "pg_title": "Postgraduate in Applied Artificial Intelligence",
+    "bacharel_title": "Bachelor in Information Technology",
     "formacao": "Academic Background",
     "exp": "Professional Experience"
   },
@@ -44,6 +49,14 @@
     "sending": "Sending...",
     "success": "Message sent successfully! Thank you for your contact.",
     "error": "An error occurred while sending. Please try again later."
+  },
+  "badges": {
+    "ai": "Artificial Intelligence",
+    "ml": "Machine Learning",
+    "web": "Web Development",
+    "automation": "Automation",
+    "bigdata": "Big Data",
+    "web3": "Web3"
   },
   "experience": [
     {
@@ -206,6 +219,7 @@
     "generating": "Generating...",
     "processing": "Processing your request...",
     "waiting": "Waiting for your prompt to generate a response...",
-    "copy": "Copy"
+    "copy": "Copy",
+    "personal_mode_note": "Personal Q&A mode: ask about Renan (education, skills, location, contacts)."
   }
 } 

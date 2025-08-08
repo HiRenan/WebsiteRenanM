@@ -237,6 +237,27 @@ img:hover, .rounded-full:hover {
   background-size: 50px 50px;
 }
 
+/* Compensação do header fixo para navegação por âncora */
+section[id] {
+  scroll-margin-top: 72px; /* ~h-16 + margem */
+}
+
+/* Link de pular para conteúdo */
+.skip-to-content {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  z-index: 1000;
+}
+.skip-to-content:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
 /* Partículas flutuantes */
 @keyframes float-particles {
   0%, 100% {
@@ -251,6 +272,18 @@ img:hover, .rounded-full:hover {
 
 .absolute.w-2.h-2 {
   animation: float-particles linear infinite;
+}
+
+/* Reduzir partículas e efeitos em mobile */
+@media (max-width: 768px) {
+  .absolute.w-2.h-2,
+  .absolute.w-1.h-1 {
+    display: none;
+  }
+  .animate-blob {
+    animation-duration: 12s;
+    opacity: 0.15;
+  }
 }
 
 /* Efeitos de hover para cards */
@@ -271,6 +304,13 @@ img:hover, .rounded-full:hover {
 
 .dark .card-hover-effect:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Tone-down em sombras no dark mode para densidade maior */
+@media (prefers-color-scheme: dark) {
+  .card-hover-effect {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
 }
 
 /* Gradiente animado para títulos */

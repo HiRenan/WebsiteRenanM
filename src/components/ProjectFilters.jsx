@@ -37,10 +37,10 @@ const ProjectFilters = ({ projects, onFilterChange, activeFilter }) => {
   }, {})
 
   const filterOptions = [
-    { key: 'all', label: t('filters.all', 'Todos'), count: projects.length },
-    { key: 'ai', label: t('filters.ai', 'IA/ML'), count: projects.filter(p => p.technologies.some(tech => techCategories['AI/ML'].includes(tech))).length },
-    { key: 'web', label: t('filters.web', 'Web Dev'), count: projects.filter(p => p.technologies.some(tech => techCategories['Web'].includes(tech))).length },
-    { key: 'automation', label: t('filters.automation', 'Automação'), count: projects.filter(p => p.technologies.some(tech => techCategories['Automação'].includes(tech))).length }
+    { key: 'all', label: t('filters.all'), count: projects.length },
+    { key: 'ai', label: t('filters.ai'), count: projects.filter(p => p.technologies.some(tech => techCategories['AI/ML'].includes(tech))).length },
+    { key: 'web', label: t('filters.web'), count: projects.filter(p => p.technologies.some(tech => techCategories['Web'].includes(tech))).length },
+    { key: 'automation', label: t('filters.automation'), count: projects.filter(p => p.technologies.some(tech => techCategories['Automação'].includes(tech))).length }
   ]
 
   return (
@@ -92,7 +92,7 @@ const ProjectFilters = ({ projects, onFilterChange, activeFilter }) => {
           transition={{ duration: 0.3 }}
         >
           <span className="text-sm text-gray-600 dark:text-gray-400">
-            {t('filters.showing', 'Mostrando projetos de')}: <strong>{filterOptions.find(f => f.key === activeFilter)?.label}</strong>
+            {t('filters.showing')}: <strong>{filterOptions.find(f => f.key === activeFilter)?.label}</strong>
           </span>
         </motion.div>
       )}

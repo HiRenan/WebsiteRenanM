@@ -1,0 +1,32 @@
+{
+  "pt": {
+    "summary": "Especialista em IA, Desenvolvimento Web e Automação.",
+    "location": "Florianópolis, Santa Catarina, Brasil",
+    "education": [
+      { "title": "Pós-graduação em Inteligência Artificial Aplicada", "org": "SENAI/SC", "period": "2025-2026" },
+      { "title": "Bacharelado em Tecnologia da Informação", "org": "Estácio", "period": "2020-2024" }
+    ],
+    "skills": ["Python", "Machine Learning", "Deep Learning", "Computer Vision", "React", "Node.js", "SQL", "Tailwind CSS", "AWS" ],
+    "contacts": {
+      "linkedin": "https://www.linkedin.com/in/renan-mocelin-br/",
+      "github": "https://github.com/HiRenan",
+      "whatsapp": "https://wa.me/5548984273397"
+    }
+  },
+  "en": {
+    "summary": "Specialist in AI, Web Development and Automation.",
+    "location": "Florianópolis, Santa Catarina, Brazil",
+    "education": [
+      { "title": "Postgraduate in Applied Artificial Intelligence", "org": "SENAI/SC", "period": "2025-2026" },
+      { "title": "Bachelor in Information Technology", "org": "Estácio", "period": "2020-2024" }
+    ],
+    "skills": ["Python", "Machine Learning", "Deep Learning", "Computer Vision", "React", "Node.js", "SQL", "Tailwind CSS", "AWS" ],
+    "contacts": {
+      "linkedin": "https://www.linkedin.com/in/renan-mocelin-br/",
+      "github": "https://github.com/HiRenan",
+      "whatsapp": "https://wa.me/5548984273397"
+    }
+  }
+}
+
+

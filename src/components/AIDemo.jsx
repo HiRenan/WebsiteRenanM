@@ -16,6 +16,7 @@ import {
   PenTool,
   Lightbulb
 } from 'lucide-react'
+import { personalQA } from '@/lib/utils'
 
 const AIDemo = () => {
   const { t } = useTranslation()
@@ -25,38 +26,39 @@ const AIDemo = () => {
   const [isGenerating, setIsGenerating] = useState(false)
   const [showResult, setShowResult] = useState(false)
 
+  // Templates focados em Q&A pessoal
   const promptTemplates = [
     {
-      id: 'business',
-      title: t('ai_demo.prompts.business.title', 'Estratégia de Negócios'),
-      description: t('ai_demo.prompts.business.desc', 'Gere ideias para melhorar um negócio'),
-      prompt: 'Como posso melhorar a experiência do cliente em um e-commerce de roupas usando tecnologia?',
+      id: 'who',
+      title: t('about.title'),
+      description: t('ai_demo.custom_prompt'),
+      prompt: t('hero.full'),
       icon: <Lightbulb className="w-5 h-5" />,
-      color: 'from-yellow-500 to-orange-500'
+      color: 'from-blue-500 to-cyan-500'
     },
     {
-      id: 'code',
-      title: t('ai_demo.prompts.code.title', 'Solução de Código'),
-      description: t('ai_demo.prompts.code.desc', 'Resolva problemas de programação'),
-      prompt: 'Explique como implementar um sistema de cache em Redis para uma API REST em Node.js',
+      id: 'skills',
+      title: t('techstack.title'),
+      description: t('techstack.desc'),
+      prompt: t('filters.ai'),
       icon: <Code className="w-5 h-5" />,
-      color: 'from-blue-500 to-purple-500'
+      color: 'from-purple-500 to-pink-500'
     },
     {
-      id: 'automation',
-      title: t('ai_demo.prompts.automation.title', 'Automação de Processos'),
-      description: t('ai_demo.prompts.automation.desc', 'Automatize tarefas repetitivas'),
-      prompt: 'Como automatizar o processo de geração de relatórios mensais usando Python e RPA?',
+      id: 'education',
+      title: t('about.formacao'),
+      description: t('about.desc'),
+      prompt: t('about.formacao'),
       icon: <Zap className="w-5 h-5" />,
       color: 'from-green-500 to-teal-500'
     },
     {
-      id: 'content',
-      title: t('ai_demo.prompts.content.title', 'Criação de Conteúdo'),
-      description: t('ai_demo.prompts.content.desc', 'Crie conteúdo profissional'),
-      prompt: 'Escreva um post para LinkedIn sobre as tendências de IA em 2025',
+      id: 'contact',
+      title: t('contact.info'),
+      description: t('contact.desc'),
+      prompt: 'contato',
       icon: <PenTool className="w-5 h-5" />,
-      color: 'from-pink-500 to-rose-500'
+      color: 'from-amber-500 to-orange-500'
     }
   ]
 
@@ -324,13 +326,25 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
     setIsGenerating(true)
     setShowResult(false)
 
-    // Simular delay de API
+    // Primeiro tentamos responder via Q&A pessoal
+    const lang = typeof navigator !== 'undefined' && navigator.language?.startsWith('en') ? 'en' : 'pt'
+    const personal = personalQA(prompt, lang, { experiences })
+    if (personal) {
+      setTimeout(() => {
+        setGeneratedText(personal)
+        setIsGenerating(false)
+        setShowResult(true)
+      }, 600)
+      return
+    }
+
+    // Fallback para simulação genérica (até integrarmos uma API)
     setTimeout(() => {
       const response = simulateAIResponse(prompt)
       setGeneratedText(response)
       setIsGenerating(false)
       setShowResult(true)
-    }, 2000)
+    }, 1200)
   }
 
   const handleCopy = () => {
@@ -344,7 +358,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
   }
 
   return (
-    <section className="py-28 relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-indigo-900/20">
+    <section id="ai" className="py-28 relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-indigo-900/20">
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
@@ -399,12 +413,9 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
               <Brain className="w-8 h-8 text-white" />
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 title-gradient-animated">
-            {t('ai_demo.title', 'Demo de IA Interativa')}
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            {t('ai_demo.desc', 'Experimente o poder da inteligência artificial. Escolha um prompt ou crie o seu próprio!')}
-          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 title-gradient-animated">{t('ai_demo.title')}</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('ai_demo.desc')}</p>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t('ai_demo.personal_mode_note')}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -418,11 +429,10 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
             <Card className="h-full card-hover-effect border-0 shadow-xl">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <MessageSquare className="w-5 h-5 text-blue-500" />
-                  {t('ai_demo.input.title', 'Seu Prompt')}
+                  <MessageSquare className="w-5 h-5 text-blue-500" />{t('ai_demo.input.title')}
                 </CardTitle>
                 <CardDescription>
-                  {t('ai_demo.input.desc', 'Escolha um template ou escreva seu próprio prompt')}
+                  {t('ai_demo.input.desc')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -460,7 +470,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
                 {/* Custom Prompt */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('ai_demo.custom_prompt', 'Ou escreva seu próprio prompt:')}
+                    {t('ai_demo.custom_prompt')}
                   </label>
                   <Textarea
                     value={customPrompt}
@@ -468,7 +478,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
                       setCustomPrompt(e.target.value)
                       setSelectedPrompt('')
                     }}
-                    placeholder={t('ai_demo.placeholder', 'Digite sua pergunta ou solicitação aqui...')}
+                    placeholder={t('ai_demo.placeholder')}
                     className="min-h-[100px] resize-none"
                   />
                 </div>
@@ -482,12 +492,12 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
                   {isGenerating ? (
                     <div className="flex items-center gap-2">
                       <RefreshCw className="w-4 h-4 animate-spin" />
-                      {t('ai_demo.generating', 'Gerando...')}
+                      {t('ai_demo.generating')}
                     </div>
                   ) : (
                     <div className="flex items-center gap-2">
                       <Sparkles className="w-4 h-4" />
-                      {t('ai_demo.generate', 'Gerar com IA')}
+                      {t('ai_demo.generate')}
                     </div>
                   )}
                 </Button>
@@ -506,8 +516,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Brain className="w-5 h-5 text-purple-500" />
-                    {t('ai_demo.output.title', 'Resposta da IA')}
+                    <Brain className="w-5 h-5 text-purple-500" />{t('ai_demo.output.title')}
                   </div>
                   {showResult && (
                     <Button
@@ -517,12 +526,12 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
                       className="flex items-center gap-1"
                     >
                       <Copy className="w-4 h-4" />
-                      {t('ai_demo.copy', 'Copiar')}
+                      {t('ai_demo.copy')}
                     </Button>
                   )}
                 </CardTitle>
                 <CardDescription>
-                  {t('ai_demo.output.desc', 'Resultado gerado pela inteligência artificial')}
+                  {t('ai_demo.output.desc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -538,7 +547,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
                       >
                         <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-500 rounded-full animate-spin mb-4"></div>
                         <p className="text-gray-600 dark:text-gray-400">
-                          {t('ai_demo.processing', 'Processando sua solicitação...')}
+                          {t('ai_demo.processing')}
                         </p>
                       </motion.div>
                     )}
@@ -565,9 +574,7 @@ Estratégias comprovadas para aumentar seu alcance e engajamento:
                         className="flex flex-col items-center justify-center h-full text-center"
                       >
                         <Brain className="w-16 h-16 text-gray-300 dark:text-gray-600 mb-4" />
-                        <p className="text-gray-500 dark:text-gray-400">
-                          {t('ai_demo.waiting', 'Aguardando seu prompt para gerar uma resposta...')}
-                        </p>
+                        <p className="text-gray-500 dark:text-gray-400">{t('ai_demo.waiting')}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>

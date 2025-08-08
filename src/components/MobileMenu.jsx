@@ -36,6 +36,8 @@ const MobileMenu = ({
     { key: 'home', label: t('nav.home') },
     { key: 'about', label: t('nav.about') },
     { key: 'services', label: t('nav.services') },
+    { key: 'techstack', label: t('nav.techstack') },
+    { key: 'ai', label: t('nav.ai') },
     { key: 'portfolio', label: t('nav.portfolio') },
     { key: 'contact', label: t('nav.contact') }
   ]
